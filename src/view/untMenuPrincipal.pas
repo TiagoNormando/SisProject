@@ -39,7 +39,6 @@ type
     ColorDlgMenu: TColorDialog;
     Image1: TImage;
     actConfiguracao: TAction;
-    StatusBar2: TStatusBar;
     catRelatorio: TCategoryButtons;
     catMenuItems: TCategoryButtons;
     catcadastro: TCategoryButtons;
@@ -47,6 +46,7 @@ type
     ActRProjeto: TAction;
     ActCProjeto: TAction;
     ActCClientes: TAction;
+    PanelTexto: TPanel;
     procedure SVClosed(Sender: TObject);
     procedure SVOpened(Sender: TObject);
     procedure SVOpening(Sender: TObject);
@@ -76,6 +76,8 @@ implementation
 
 
 {$R *.dfm}
+
+uses untCadastroProjetos;
 
 // procedure que irei utilizar para da show nos forms.
 procedure TfrmMenuPrincipal.LoadForm(AClass: TFormClass);
@@ -119,14 +121,14 @@ end;
 
 procedure TfrmMenuPrincipal.SVOpened(Sender: TObject);
 begin
-  // When not animating, change size of catMenuItems when TSplitView is opened
+   // muda o tramanho dos submenus na animação quando abrir  o TSplitView
   catMenuItems.ButtonOptions := catMenuItems.ButtonOptions + [boShowCaptions];
   catMenuItems.Width         := SV.OpenedWidth;
 end;
 
 procedure TfrmMenuPrincipal.SVOpening(Sender: TObject);
 begin
-  // When animating, change size of catMenuItems at the beginning of open
+  // muda o tramanho dos submenus na animação
   catMenuItems.ButtonOptions := catMenuItems.ButtonOptions + [boShowCaptions];
   catMenuItems.Width := SV.OpenedWidth;
 end;
@@ -134,7 +136,7 @@ end;
 
 procedure TfrmMenuPrincipal.ActCClientesExecute(Sender: TObject);
 begin
-  //
+ //Self.LoadForm(TfCadCliente);
 end;
 
 procedure TfrmMenuPrincipal.actConfiguracaoExecute(Sender: TObject);
@@ -149,7 +151,8 @@ end;
 
 procedure TfrmMenuPrincipal.ActCProjetoExecute(Sender: TObject);
 begin
-//  Self.LoadForm(Tffrm);
+
+  Self.LoadForm(TfrmCadastroProjetos);
 end;
 
 Procedure TfrmMenuPrincipal.actRelatorioExecute(Sender: TObject);

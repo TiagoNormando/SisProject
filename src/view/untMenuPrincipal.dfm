@@ -75,13 +75,6 @@ object frmMenuPrincipal: TfrmMenuPrincipal
     Color = 15132390
     ParentBackground = False
     TabOrder = 1
-    object StatusBar2: TStatusBar
-      Left = 0
-      Top = 390
-      Width = 897
-      Height = 19
-      Panels = <>
-    end
     object catRelatorio: TCategoryButtons
       Tag = 1
       Left = 40
@@ -114,7 +107,7 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       HotButtonColor = 12477460
       RegularButtonColor = clNone
       SelectedButtonColor = clNone
-      TabOrder = 1
+      TabOrder = 0
       Visible = False
     end
     object catcadastro: TCategoryButtons
@@ -150,8 +143,24 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       HotButtonColor = 12477460
       RegularButtonColor = clNone
       SelectedButtonColor = clNone
-      TabOrder = 2
+      TabOrder = 1
       Visible = False
+    end
+    object PanelTexto: TPanel
+      Left = 0
+      Top = 384
+      Width = 897
+      Height = 25
+      Align = alBottom
+      BevelInner = bvLowered
+      Caption = '...'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
     end
   end
   object SV: TSplitView

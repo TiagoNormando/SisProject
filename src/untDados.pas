@@ -188,7 +188,7 @@ begin
                     ShellExecute(hWnd, 'open', pchar(Arquivo), nil, nil, SW_SHOWNORMAL);
           end
           else
-               MessageDlg( 'Erro ao gerar o arquivo!', mtError, [mbOk], 0);
+               MessageDlg('Erro ao gerar o arquivo!', mtError, [mbOk], 0);
      end
      else
           MessageDlg('Não existem informações disponíveis!', mtError, [mbOk], 0);
