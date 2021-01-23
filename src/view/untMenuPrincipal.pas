@@ -27,7 +27,7 @@ uses
 type
   TfrmMenuPrincipal = class(TForm)
     pnlToolbar: TPanel;
-    pnlSettings: TPanel;
+    pnlShowFrame: TPanel;
     SV: TSplitView;
     imlIcons: TImageList;
     imgMenu: TImage;
@@ -61,7 +61,10 @@ type
     procedure ActCClientesExecute(Sender: TObject);
 
   private
-    rec : TRect ;
+     { Private declarations }
+     rec : TRect ;
+     FFormActive: TForm;
+    procedure LoadForm(AClass: TFormClass);
   public
   end;
 
@@ -73,6 +76,28 @@ implementation
 
 
 {$R *.dfm}
+
+// procedure que irei utilizar para da show nos forms.
+procedure TfrmMenuPrincipal.LoadForm(AClass: TFormClass);
+begin
+  if Assigned(Self.FFormActive) then
+  begin
+    Self.FFormActive.Close;
+    Self.FFormActive.Free;
+    Self.FFormActive := nil;
+  end;
+  //
+  Self.FFormActive := AClass.Create(nil);
+  Self.FFormActive.Parent := Self.pnlShowFrame;
+  Self.FFormActive.BorderStyle := TFormBorderStyle.bsNone;
+  //
+  Self.FFormActive.Top := 0;
+  Self.FFormActive.Left := 0;
+  Self.FFormActive.Align := TAlign.alClient;
+  //
+  Self.FFormActive.Show;
+  //
+end;
 
 
 procedure TfrmMenuPrincipal.imgMenuClick(Sender: TObject);
@@ -124,7 +149,7 @@ end;
 
 procedure TfrmMenuPrincipal.ActCProjetoExecute(Sender: TObject);
 begin
-  SubMenuBt.Visible := false ;
+//  Self.LoadForm(Tffrm);
 end;
 
 Procedure TfrmMenuPrincipal.actRelatorioExecute(Sender: TObject);

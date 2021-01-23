@@ -65,7 +65,7 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       OnClick = imgMenuClick
     end
   end
-  object pnlSettings: TPanel
+  object pnlShowFrame: TPanel
     Left = 194
     Top = 50
     Width = 897
