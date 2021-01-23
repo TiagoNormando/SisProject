@@ -2,13 +2,13 @@ program SistemaProject;
 
 uses
   Vcl.Forms,
-  untMenuPrincipal in 'untMenuPrincipal.pas' {Form1};
+  untMenuPrincipal in 'view\untMenuPrincipal.pas' {frmMenuPrincipal};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrmMenuPrincipal, frmMenuPrincipal);
   Application.Run;
 end.

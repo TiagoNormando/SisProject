@@ -1,0 +1,9 @@
+﻿[ActionListMenu]
+LayerNames=teste;teste2;teste3;teste4
+
+[Module Settings]
+ModelLayerNames=teste;teste2;teste3;teste4;teste333;test444
+
+[actCadastro]
+LayerNames=
+

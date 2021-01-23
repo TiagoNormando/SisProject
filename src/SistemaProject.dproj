@@ -90,8 +90,8 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="untMenuPrincipal.pas">
-            <Form>Form1</Form>
+        <DCCReference Include="view\untMenuPrincipal.pas">
+            <Form>frmMenuPrincipal</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
