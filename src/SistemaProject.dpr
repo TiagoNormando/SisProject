@@ -3,7 +3,7 @@ program SistemaProject;
 uses
   Vcl.Forms,
   untMenuPrincipal in 'view\untMenuPrincipal.pas' {frmMenuPrincipal},
-  untDados in 'untDados.pas' {frmDados: TDataModule},
+  untDataModule in 'untDataModule.pas' {frmDados: TDataModule},
   untModeloAviso in 'View\untModeloAviso.pas' {frmModeloAviso},
   untCadastroProjetos in 'View\untCadastroProjetos.pas' {frmCadastroProjetos};
 

@@ -92,7 +92,7 @@ implementation
 
 {$R *.dfm}
 
-uses untMenuPrincipal, untDados;
+uses untMenuPrincipal, untDataModule;
 
 
 procedure TfrmCadastroProjetos.Bloqueio(Tipo: Boolean);

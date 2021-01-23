@@ -25,8 +25,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
     BevelOuter = bvNone
     BorderWidth = 1
     TabOrder = 0
-    ExplicitTop = -37
-    ExplicitHeight = 574
     object pnlLocalizar: TPanel
       Left = 1
       Top = 1
@@ -143,7 +141,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
       Color = 4276545
       ParentBackground = False
       TabOrder = 1
-      ExplicitTop = 524
       object btnIncluir: TButton
         Left = 4
         Top = 2
@@ -304,8 +301,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      ExplicitLeft = 2
-      ExplicitHeight = 468
       object ctrRegistro: TPageControl
         Left = 4
         Top = 4
@@ -322,16 +317,14 @@ object frmCadastroProjetos: TfrmCadastroProjetos
         ParentFont = False
         TabOrder = 0
         TabStop = False
-        ExplicitLeft = 68
-        ExplicitTop = 6
-        ExplicitWidth = 584
-        ExplicitHeight = 460
         object tshListagem: TTabSheet
           Cursor = crHandPoint
           Hint = 'Listagem dos Registros'
           Caption = 'Listagem dos Registros'
           ParentShowHint = False
           ShowHint = True
+          ExplicitLeft = 0
+          ExplicitTop = 0
           ExplicitWidth = 576
           ExplicitHeight = 431
           object DBGridRegistro: TDBGrid
@@ -397,8 +390,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
           ImageIndex = 1
           ParentShowHint = False
           ShowHint = True
-          ExplicitWidth = 576
-          ExplicitHeight = 431
           object lblCodigo: TLabel
             Left = 8
             Top = 16
