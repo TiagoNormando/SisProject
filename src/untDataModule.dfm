@@ -12,6 +12,7 @@ object frmDados: TfrmDados
       'Database=dbsisproject'
       'User_Name=root'
       'DriverID=MySQL')
+    Connected = True
     LoginPrompt = False
     Left = 48
     Top = 24
@@ -50,12 +51,14 @@ object frmDados: TfrmDados
       Origin = 'dataInicio'
       ProviderFlags = [pfInUpdate]
       Required = True
+      DisplayFormat = 'dd/MM/yyyy'
     end
     object FDTableProjetodataFim: TDateField
       FieldName = 'dataFim'
       Origin = 'dataFim'
       ProviderFlags = [pfInUpdate]
       Required = True
+      DisplayFormat = 'dd/MM/yyyy'
     end
     object FDTableProjetovalorProjeto: TFloatField
       FieldName = 'valorProjeto'
@@ -69,5 +72,37 @@ object frmDados: TfrmDados
       ProviderFlags = [pfInUpdate]
       Required = True
     end
+  end
+  object FDTableProjetoParticipante: TFDTable
+    CachedUpdates = True
+    Connection = FDConnection
+    UpdateOptions.UpdateTableName = 'projetoparticipante'
+    TableName = 'projetoparticipante'
+    Left = 104
+    Top = 104
+    object FDTableProjetoParticipanteprojeto_id: TIntegerField
+      FieldName = 'projeto_id'
+      Origin = 'projeto_id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object FDTableProjetoParticipantenomeParticipante: TStringField
+      FieldName = 'nomeParticipante'
+      Origin = 'nomeParticipante'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 200
+    end
+  end
+  object FDQueryAUX: TFDQuery
+    Connection = FDConnection
+    Left = 32
+    Top = 168
+  end
+  object cdsAux: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 104
+    Top = 176
   end
 end

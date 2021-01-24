@@ -28,6 +28,11 @@ type
     FDTableProjetodataFim: TDateField;
     FDTableProjetovalorProjeto: TFloatField;
     FDTableProjetorisco: TIntegerField;
+    FDTableProjetoParticipante: TFDTable;
+    FDTableProjetoParticipanteprojeto_id: TIntegerField;
+    FDTableProjetoParticipantenomeParticipante: TStringField;
+    FDQueryAUX: TFDQuery;
+    cdsAux: TClientDataSet;
           procedure SplashAviso(Ativo: Boolean);
           procedure ExportCSV(hWnd: hWnd; InfoLocal: TDataSet; Arquivo: String; Separador: String);
     procedure DataModuleCreate(Sender: TObject);

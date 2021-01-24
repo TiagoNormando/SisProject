@@ -2,8 +2,8 @@ object frmCadastroProjetos: TfrmCadastroProjetos
   Left = 0
   Top = 0
   Caption = 'frmCadastroProjetos'
-  ClientHeight = 537
-  ClientWidth = 635
+  ClientHeight = 600
+  ClientWidth = 729
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,17 +20,19 @@ object frmCadastroProjetos: TfrmCadastroProjetos
   object pnlForm: TPanel
     Left = 0
     Top = 0
-    Width = 635
-    Height = 537
+    Width = 729
+    Height = 600
     Cursor = crHandPoint
     Align = alClient
     BevelOuter = bvNone
     BorderWidth = 1
     TabOrder = 0
+    ExplicitWidth = 635
+    ExplicitHeight = 537
     object pnlLocalizar: TPanel
       Left = 1
       Top = 1
-      Width = 633
+      Width = 727
       Height = 55
       Align = alTop
       Color = 4276545
@@ -42,6 +44,8 @@ object frmCadastroProjetos: TfrmCadastroProjetos
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
+      ExplicitTop = -1
+      ExplicitWidth = 798
       object lblLocalizar: TLabel
         Left = 184
         Top = 5
@@ -71,6 +75,14 @@ object frmCadastroProjetos: TfrmCadastroProjetos
         Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
+      end
+      object SpeedButton1: TSpeedButton
+        Left = 599
+        Top = 4
+        Width = 106
+        Height = 45
+        Caption = 'FECHAR'
+        OnClick = SpeedButton1Click
       end
       object cbxOpcao: TComboBox
         Left = 7
@@ -108,6 +120,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
         ParentFont = False
         TabOrder = 0
         Text = ''
+        OnKeyPress = edtRegistroKeyPress
       end
       object btnLocalizar: TButton
         Left = 483
@@ -136,13 +149,15 @@ object frmCadastroProjetos: TfrmCadastroProjetos
     end
     object pnlBarra: TPanel
       Left = 1
-      Top = 487
-      Width = 633
+      Top = 550
+      Width = 727
       Height = 49
       Align = alBottom
       Color = 4276545
       ParentBackground = False
       TabOrder = 1
+      ExplicitTop = 487
+      ExplicitWidth = 633
       object btnIncluir: TButton
         Left = 4
         Top = 2
@@ -287,36 +302,12 @@ object frmCadastroProjetos: TfrmCadastroProjetos
         TabOrder = 5
         OnClick = btnExportarClick
       end
-      object Button1: TButton
-        Left = 483
-        Top = 2
-        Width = 110
-        Height = 45
-        Cursor = crHandPoint
-        ParentCustomHint = False
-        BiDiMode = bdLeftToRight
-        Caption = 'Voltar'
-        DoubleBuffered = False
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        ImageIndex = 7
-        ParentBiDiMode = False
-        ParentDoubleBuffered = False
-        ParentFont = False
-        ParentShowHint = False
-        ShowHint = False
-        TabOrder = 6
-        OnClick = Button1Click
-      end
     end
     object pnlDados: TPanel
       Left = 1
       Top = 56
-      Width = 633
-      Height = 431
+      Width = 727
+      Height = 494
       Align = alClient
       BevelInner = bvLowered
       BorderWidth = 2
@@ -327,13 +318,15 @@ object frmCadastroProjetos: TfrmCadastroProjetos
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      ExplicitWidth = 633
+      ExplicitHeight = 431
       object ctrRegistro: TPageControl
         Left = 4
         Top = 4
-        Width = 625
-        Height = 423
+        Width = 719
+        Height = 486
         Cursor = crHandPoint
-        ActivePage = tshListagem
+        ActivePage = tshDados
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -343,17 +336,21 @@ object frmCadastroProjetos: TfrmCadastroProjetos
         ParentFont = False
         TabOrder = 0
         TabStop = False
+        ExplicitWidth = 625
+        ExplicitHeight = 423
         object tshListagem: TTabSheet
           Cursor = crHandPoint
           Hint = 'Listagem dos Registros'
           Caption = 'Listagem dos Registros'
           ParentShowHint = False
           ShowHint = True
+          ExplicitWidth = 617
+          ExplicitHeight = 394
           object DBGridRegistro: TDBGrid
             Left = 0
             Top = 0
-            Width = 617
-            Height = 394
+            Width = 711
+            Height = 457
             Cursor = crHandPoint
             Hint = 'Listagem dos Registros'
             ParentCustomHint = False
@@ -400,7 +397,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
                 Expanded = False
                 FieldName = 'nomeProjeto'
                 Title.Caption = 'Nome do Projeto'
-                Width = 510
+                Width = 623
                 Visible = True
               end>
           end
@@ -412,6 +409,8 @@ object frmCadastroProjetos: TfrmCadastroProjetos
           ImageIndex = 1
           ParentShowHint = False
           ShowHint = True
+          ExplicitWidth = 617
+          ExplicitHeight = 394
           object lblCodigo: TLabel
             Left = 8
             Top = 16
@@ -423,9 +422,9 @@ object frmCadastroProjetos: TfrmCadastroProjetos
           object Label2: TLabel
             Left = 92
             Top = 16
-            Width = 72
+            Width = 92
             Height = 14
-            Caption = 'nomeProjeto'
+            Caption = 'Nome do Projeto'
             FocusControl = DBEdit2
           end
           object Label3: TLabel
@@ -446,10 +445,9 @@ object frmCadastroProjetos: TfrmCadastroProjetos
           object Label6: TLabel
             Left = 92
             Top = 112
-            Width = 28
+            Width = 90
             Height = 14
-            Caption = 'risco'
-            FocusControl = DBEdit6
+            Caption = 'Risco do Projeto'
           end
           object Label1: TLabel
             Left = 232
@@ -457,6 +455,13 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             Width = 20
             Height = 14
             Caption = 'Fim'
+          end
+          object Label4: TLabel
+            Left = 232
+            Top = 112
+            Width = 125
+            Height = 14
+            Caption = 'Participante do Projeto'
           end
           object DBEditCodigo: TDBEdit
             Left = 8
@@ -481,7 +486,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             ReadOnly = True
             TabOrder = 0
             StyleElements = []
-            OnKeyPress = DBEditCodigoKeyPress
           end
           object DBEdit2: TDBEdit
             Left = 92
@@ -502,7 +506,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
           object DBEdit5: TDBEdit
             Left = 372
             Top = 75
-            Width = 134
+            Width = 165
             Height = 22
             CharCase = ecUpperCase
             DataField = 'valorProjeto'
@@ -514,22 +518,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             Font.Style = []
             ParentFont = False
             TabOrder = 2
-          end
-          object DBEdit6: TDBEdit
-            Left = 92
-            Top = 128
-            Width = 134
-            Height = 22
-            CharCase = ecUpperCase
-            DataField = 'risco'
-            DataSource = srcRegistro
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Arial'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 3
           end
           object DBEdit1: TDBEdit
             Left = 92
@@ -545,7 +533,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             Font.Name = 'Arial'
             Font.Style = []
             ParentFont = False
-            TabOrder = 4
+            TabOrder = 3
           end
           object DBEdit3: TDBEdit
             Left = 232
@@ -561,7 +549,124 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             Font.Name = 'Arial'
             Font.Style = []
             ParentFont = False
+            TabOrder = 4
+          end
+          object EdtNomeParticipantes: TEdit
+            Left = 233
+            Top = 127
+            Width = 257
+            Height = 22
+            CharCase = ecUpperCase
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
             TabOrder = 5
+            Text = 'EDIT1'
+            OnKeyPress = EdtNomeParticipantesKeyPress
+          end
+          object Button2: TButton
+            Left = 494
+            Top = 125
+            Width = 42
+            Height = 25
+            Caption = 'ADD'
+            TabOrder = 6
+            OnClick = Button2Click
+          end
+          object ComboBoxRisco: TComboBoxEx
+            Left = 92
+            Top = 127
+            Width = 134
+            Height = 23
+            ItemsEx = <
+              item
+                Caption = 'BAIXO'
+              end
+              item
+                Caption = 'M'#201'DIO'
+              end
+              item
+                Caption = 'ALTO'
+              end>
+            TabOrder = 7
+          end
+          object GroupBox1: TGroupBox
+            Left = 92
+            Top = 168
+            Width = 444
+            Height = 153
+            Caption = 'Listagem dos Participantes'
+            TabOrder = 8
+            object DBGrid1: TDBGrid
+              Left = 2
+              Top = 16
+              Width = 440
+              Height = 135
+              Cursor = crHandPoint
+              Hint = 'Listagem dos Registros'
+              ParentCustomHint = False
+              Align = alClient
+              BiDiMode = bdLeftToRight
+              Ctl3D = True
+              DataSource = srcProjetoParticipante
+              GradientEndColor = clBtnFace
+              GradientStartColor = clWindow
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clBlack
+              Font.Height = -11
+              Font.Name = 'Arial'
+              Font.Style = []
+              Options = [dgTitles, dgColumnResize, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick]
+              ParentBiDiMode = False
+              ParentCtl3D = False
+              ParentFont = False
+              ParentShowHint = False
+              ShowHint = True
+              TabOrder = 0
+              TitleFont.Charset = DEFAULT_CHARSET
+              TitleFont.Color = clBlack
+              TitleFont.Height = -11
+              TitleFont.Name = 'Arial'
+              TitleFont.Style = []
+              OnDrawColumnCell = DBGridRegistroDrawColumnCell
+              OnDblClick = DBGridRegistroDblClick
+              OnTitleClick = DBGridRegistroTitleClick
+              Columns = <
+                item
+                  Expanded = False
+                  FieldName = 'nomeParticipante'
+                  Title.Caption = 'Nome'
+                  Width = 416
+                  Visible = True
+                end>
+            end
+          end
+          object Button3: TButton
+            Left = 264
+            Top = 325
+            Width = 109
+            Height = 45
+            Cursor = crHandPoint
+            ParentCustomHint = False
+            BiDiMode = bdLeftToRight
+            Caption = 'Excluir Participante'
+            DoubleBuffered = False
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ImageIndex = 1
+            ParentBiDiMode = False
+            ParentDoubleBuffered = False
+            ParentFont = False
+            ParentShowHint = False
+            ShowHint = False
+            TabOrder = 9
+            OnClick = Button3Click
           end
         end
       end
@@ -571,7 +676,13 @@ object frmCadastroProjetos: TfrmCadastroProjetos
     AutoEdit = False
     DataSet = frmDados.FDTableProjeto
     OnDataChange = srcRegistroDataChange
-    Left = 192
-    Top = 320
+    Left = 16
+    Top = 152
+  end
+  object srcProjetoParticipante: TDataSource
+    AutoEdit = False
+    DataSet = frmDados.FDTableProjetoParticipante
+    Left = 16
+    Top = 208
   end
 end
