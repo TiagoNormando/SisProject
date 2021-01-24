@@ -27,8 +27,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
     BevelOuter = bvNone
     BorderWidth = 1
     TabOrder = 0
-    ExplicitWidth = 635
-    ExplicitHeight = 537
     object pnlLocalizar: TPanel
       Left = 1
       Top = 1
@@ -44,8 +42,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      ExplicitTop = -1
-      ExplicitWidth = 798
       object lblLocalizar: TLabel
         Left = 184
         Top = 5
@@ -156,8 +152,8 @@ object frmCadastroProjetos: TfrmCadastroProjetos
       Color = 4276545
       ParentBackground = False
       TabOrder = 1
-      ExplicitTop = 487
-      ExplicitWidth = 633
+      ExplicitLeft = -4
+      ExplicitTop = 491
       object btnIncluir: TButton
         Left = 4
         Top = 2
@@ -279,7 +275,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
         OnClick = btnCancelarClick
       end
       object btnExportar: TButton
-        Left = 367
+        Left = 471
         Top = 2
         Width = 110
         Height = 45
@@ -318,15 +314,14 @@ object frmCadastroProjetos: TfrmCadastroProjetos
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      ExplicitWidth = 633
-      ExplicitHeight = 431
+      ExplicitLeft = 0
       object ctrRegistro: TPageControl
         Left = 4
         Top = 4
         Width = 719
         Height = 486
         Cursor = crHandPoint
-        ActivePage = tshDados
+        ActivePage = tshListagem
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -336,21 +331,23 @@ object frmCadastroProjetos: TfrmCadastroProjetos
         ParentFont = False
         TabOrder = 0
         TabStop = False
-        ExplicitWidth = 625
-        ExplicitHeight = 423
+        ExplicitLeft = 7
+        ExplicitTop = 6
+        ExplicitHeight = 429
         object tshListagem: TTabSheet
           Cursor = crHandPoint
           Hint = 'Listagem dos Registros'
           Caption = 'Listagem dos Registros'
           ParentShowHint = False
           ShowHint = True
-          ExplicitWidth = 617
-          ExplicitHeight = 394
+          ExplicitLeft = 1
+          ExplicitTop = 65
+          ExplicitHeight = 400
           object DBGridRegistro: TDBGrid
             Left = 0
             Top = 0
             Width = 711
-            Height = 457
+            Height = 408
             Cursor = crHandPoint
             Hint = 'Listagem dos Registros'
             ParentCustomHint = False
@@ -401,6 +398,42 @@ object frmCadastroProjetos: TfrmCadastroProjetos
                 Visible = True
               end>
           end
+          object Panel1: TPanel
+            Left = 0
+            Top = 408
+            Width = 711
+            Height = 49
+            Align = alBottom
+            Color = 4276545
+            ParentBackground = False
+            TabOrder = 1
+            ExplicitLeft = 1
+            ExplicitTop = 550
+            ExplicitWidth = 727
+            object Button1: TButton
+              Left = 4
+              Top = 2
+              Width = 90
+              Height = 45
+              Cursor = crHandPoint
+              ParentCustomHint = False
+              BiDiMode = bdLeftToRight
+              Caption = 'SIMULAR'
+              DoubleBuffered = False
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Arial'
+              Font.Style = []
+              ImageIndex = 0
+              ParentBiDiMode = False
+              ParentDoubleBuffered = False
+              ParentFont = False
+              ParentShowHint = False
+              ShowHint = False
+              TabOrder = 0
+            end
+          end
         end
         object tshDados: TTabSheet
           Cursor = crHandPoint
@@ -409,8 +442,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
           ImageIndex = 1
           ParentShowHint = False
           ShowHint = True
-          ExplicitWidth = 617
-          ExplicitHeight = 394
           object lblCodigo: TLabel
             Left = 8
             Top = 16
@@ -595,7 +626,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
           end
           object GroupBox1: TGroupBox
             Left = 92
-            Top = 168
+            Top = 166
             Width = 444
             Height = 153
             Caption = 'Listagem dos Participantes'
@@ -639,7 +670,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
                   Expanded = False
                   FieldName = 'nomeParticipante'
                   Title.Caption = 'Nome'
-                  Width = 416
+                  Width = 400
                   Visible = True
                 end>
             end
@@ -681,7 +712,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
   end
   object srcProjetoParticipante: TDataSource
     AutoEdit = False
-    DataSet = frmDados.FDTableProjetoParticipante
+    DataSet = frmDados.FDqrProjetoParticipante
     Left = 16
     Top = 208
   end

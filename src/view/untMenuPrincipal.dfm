@@ -12,7 +12,7 @@ object frmMenuPrincipal: TfrmMenuPrincipal
   Font.Name = 'Segoe UI'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 15
   object pnlToolbar: TPanel
@@ -25,7 +25,6 @@ object frmMenuPrincipal: TfrmMenuPrincipal
     Color = 4276545
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 800
     object imgMenu: TImage
       Left = 10
       Top = 10
@@ -78,8 +77,6 @@ object frmMenuPrincipal: TfrmMenuPrincipal
     Color = 15132390
     ParentBackground = False
     TabOrder = 1
-    ExplicitWidth = 606
-    ExplicitHeight = 531
     object catRelatorio: TCategoryButtons
       Tag = 1
       Left = 40
@@ -166,8 +163,6 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      ExplicitTop = 506
-      ExplicitWidth = 606
     end
   end
   object SV: TSplitView
@@ -185,7 +180,6 @@ object frmMenuPrincipal: TfrmMenuPrincipal
     OnMouseMove = SVMouseMove
     OnOpened = SVOpened
     OnOpening = SVOpening
-    ExplicitHeight = 531
     object catMenuItems: TCategoryButtons
       Left = 0
       Top = -19
@@ -233,8 +227,6 @@ object frmMenuPrincipal: TfrmMenuPrincipal
     Height = 19
     Color = 33023
     Panels = <>
-    ExplicitTop = 581
-    ExplicitWidth = 800
   end
   object imlIcons: TImageList
     ColorDepth = cd32Bit

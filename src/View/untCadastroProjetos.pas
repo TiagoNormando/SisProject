@@ -75,10 +75,12 @@ type
     ComboBoxRisco: TComboBoxEx;
     Label4: TLabel;
     GroupBox1: TGroupBox;
-    DBGrid1: TDBGrid;
     Button3: TButton;
     srcProjetoParticipante: TDataSource;
     SpeedButton1: TSpeedButton;
+    Panel1: TPanel;
+    Button1: TButton;
+    DBGrid1: TDBGrid;
     procedure Bloqueio(Tipo: Boolean);
     procedure FormResize(Sender: TObject);
     procedure srcRegistroDataChange(Sender: TObject; Field: TField);
@@ -96,7 +98,6 @@ type
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure DBGridRegistroDblClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure edtRegistroKeyPress(Sender: TObject; var Key: Char);
     procedure Button2Click(Sender: TObject);
@@ -108,6 +109,7 @@ type
 
   public
    codigoProjeto : Integer;
+   novoRegistro : boolean;
   end;
 
 var
@@ -135,7 +137,10 @@ begin
           // Cancelar Registro
           try
               TClientDataSet(srcRegistro.DataSet).Cancel;
+              //
               TClientDataSet(srcProjetoParticipante.DataSet).Cancel;
+              TClientDataSet(srcProjetoParticipante.DataSet).Close;
+              TClientDataSet(srcProjetoParticipante.DataSet).Open;
 
                //
           except
@@ -158,9 +163,19 @@ begin
      try
           Bloqueio(False);
           // Editar Registro
+          //
+          novoRegistro := False;
+          //
           TClientDataSet(srcRegistro.DataSet).Edit;
           //
           ComboBoxRisco.ItemIndex :=   TClientDataSet(srcRegistro.DataSet).FieldByName('risco').Value;
+          //
+          frmDados.FDqrProjetoParticipante.Close;
+          frmDados.FDqrProjetoParticipante.ParamByName('PROJETO_ID').Value  := TClientDataSet(srcRegistro.DataSet).FieldByName('idProjeto').value;
+          frmDados.FDqrProjetoParticipante.Open;
+          //
+          codigoProjeto := TClientDataSet(srcRegistro.DataSet).FieldByName('idProjeto').value;
+          //
      finally
           //
           Bloqueio(True);
@@ -218,9 +233,15 @@ begin
           TClientDataSet(srcRegistro.DataSet).FieldByName('valorProjeto').Value := 10.000;
           TClientDataSet(srcRegistro.DataSet).FieldByName('risco').Value := 0;
           //
-          ComboBoxRisco.ItemIndex :=           TClientDataSet(srcRegistro.DataSet).FieldByName('risco').Value;
+          ComboBoxRisco.ItemIndex :=    TClientDataSet(srcRegistro.DataSet).FieldByName('risco').Value;
           //
           codigoProjeto := 0;
+          //
+           novoRegistro := True;
+          //
+          frmDados.FDqrProjetoParticipante.Close;
+         frmDados.FDqrProjetoParticipante.ParamByName('PROJETO_ID').Value  := 0;
+          frmDados.FDqrProjetoParticipante.Open;
      finally
           //
           Bloqueio(True);
@@ -302,6 +323,8 @@ begin
 end;
 
 procedure TfrmCadastroProjetos.btnSalvarClick(Sender: TObject);
+var
+     nomeParcitipante: String;
 begin
      try
           Bloqueio(False);
@@ -311,32 +334,42 @@ begin
                //
                TClientDataSet(srcRegistro.DataSet).Post;
                //
-               if codigoProjeto = 0 then
+               if novoRegistro then
                begin
                     frmDados.FDQueryAUX.Close;
+                    //
                     frmDados.FDQueryAUX.sql.Clear;
-                    frmDados.FDQueryAUX.sql.Add('select msx(codigoProjeto) from projetos');
+                    frmDados.FDQueryAUX.sql.Add('select MAX(idProjeto) from projeto');
+                    //
                     frmDados.FDQueryAUX.Open;
                     //
-                    TClientDataSet(srcProjetoParticipante.DataSet).First;
+                    frmDados.FDqrProjetoParticipante.DisableControls;
+                    frmDados.FDqrProjetoParticipante.First;
                     //
-                    while  (not  TClientDataSet(srcProjetoParticipante.DataSet).Eof) do
+                    while  (not  frmDados.FDqrProjetoParticipante.Eof) do
                     begin
-                        TClientDataSet(srcProjetoParticipante.DataSet).Edit;
-                        TClientDataSet(srcProjetoParticipante.DataSet).FieldByName('projeto_id').Value :=    frmDados.FDQueryAUX.Fields[0].AsInteger;
-                        TClientDataSet(srcProjetoParticipante.DataSet).Post;
                         //
-                        TClientDataSet(srcProjetoParticipante.DataSet).Next;
+                        if  frmDados.FDqrProjetoParticipante.FieldByName('projeto_id').Value = 0 then
+                        begin
+                            frmDados.FDqrProjetoParticipante.Edit;
+                            frmDados.FDqrProjetoParticipante.FieldByName('projeto_id').Value :=    frmDados.FDQueryAUX.Fields[0].AsInteger;
+                            frmDados.FDqrProjetoParticipante.Post;
+                        end;
+                        //
+                        frmDados.FDqrProjetoParticipante.Next;
                     end;
+                    //
+                  frmDados.FDqrProjetoParticipante.EnableControls;
+                    //
                     frmDados.FDQueryAUX.Close;
                end;
                //
-                if  frmDados.FDTableProjetoParticipante.UpdatesPending then
+                if  frmDados.FDqrProjetoParticipante.UpdatesPending then
                 begin
                       try
-                          frmDados.FDTableProjetoParticipante.Append;
-                          frmDados.FDTableProjetoParticipante.ApplyUpdates(-1);
-                          frmDados.FDTableProjetoParticipante.UndoLastChange(True);
+                          frmDados.FDqrProjetoParticipante.Append;
+                          frmDados.FDqrProjetoParticipante.ApplyUpdates(-1);
+                          frmDados.FDqrProjetoParticipante.UndoLastChange(True);
                       except
                            on E: Exception do
                            begin
@@ -361,16 +394,13 @@ begin
      end;
 end;
 
-procedure TfrmCadastroProjetos.Button1Click(Sender: TObject);
-begin
-   close;
-end;
-
 procedure TfrmCadastroProjetos.Button2Click(Sender: TObject);
+var contador : integer;
 begin
     if EdtNomeParticipantes.Text <> '' then
     begin
-        TClientDataSet(srcProjetoParticipante.DataSet).DisableControls;
+
+       TClientDataSet(srcProjetoParticipante.DataSet).DisableControls;
         //
         TClientDataSet(srcProjetoParticipante.DataSet).First;
         //
@@ -496,6 +526,7 @@ procedure TfrmCadastroProjetos.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
     TClientDataSet(srcRegistro.DataSet).Close;
+    frmDados.FDqrProjetoParticipante.close;
     //
     frmMenuPrincipal.lblTitle.caption := frmMenuPrincipal.nomeMenu;
     frmMenuPrincipal.PanelTexto.Caption :=   frmMenuPrincipal.lblTitle.caption;
@@ -558,6 +589,8 @@ begin
     //
     TClientDataSet(srcProjetoParticipante.DataSet).Close;
     TClientDataSet(srcProjetoParticipante.DataSet).Open;
+    //
+    novoRegistro := False;
 end;
 
 procedure TfrmCadastroProjetos.SpeedButton1Click(Sender: TObject);
@@ -582,23 +615,6 @@ begin
      cbxOpcao.Enabled := (not(tshDados.TabVisible));
      btnLocalizar.Enabled := (not(tshDados.TabVisible));
      //
-     if (srcRegistro.State = dsBrowse) and (TClientDataSet(srcRegistro.DataSet).RecordCount > 0) then
-     begin
-          TClientDataSet(srcProjetoParticipante.DataSet).DisableControls;
-          //
-          TClientDataSet(srcProjetoParticipante.DataSet).Filtered := False;
-          TClientDataSet(srcProjetoParticipante.DataSet).Filter := 'projeto_id =' + TClientDataSet(srcRegistro.DataSet).FieldByName('idProjeto').AsString;
-          TClientDataSet(srcProjetoParticipante.DataSet).Filtered := True;
-          //
-          TClientDataSet(srcProjetoParticipante.DataSet).EnableControls;
-          //
-          codigoProjeto := TClientDataSet(srcRegistro.DataSet).FieldByName('idProjeto').value;
-     end else
-     begin
-          TClientDataSet(srcProjetoParticipante.DataSet).Filtered := False;
-          TClientDataSet(srcProjetoParticipante.DataSet).Filter := '';
-     end;
-      //
      case srcRegistro.State of
           dsBrowse:
                frmMenuPrincipal.PanelTexto.Caption := ' ' + IntToStr(TClientDataSet(srcRegistro.DataSet).RecordCount) + ' registro(s) encontrado(s)...';

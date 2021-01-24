@@ -38,6 +38,7 @@ object frmDados: TfrmDados
       FieldName = 'idProjeto'
       Origin = 'idProjeto'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object FDTableProjetonomeProjeto: TStringField
       FieldName = 'nomeProjeto'
@@ -73,36 +74,41 @@ object frmDados: TfrmDados
       Required = True
     end
   end
-  object FDTableProjetoParticipante: TFDTable
-    CachedUpdates = True
-    Connection = FDConnection
-    UpdateOptions.UpdateTableName = 'projetoparticipante'
-    TableName = 'projetoparticipante'
-    Left = 104
-    Top = 104
-    object FDTableProjetoParticipanteprojeto_id: TIntegerField
-      FieldName = 'projeto_id'
-      Origin = 'projeto_id'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-    end
-    object FDTableProjetoParticipantenomeParticipante: TStringField
-      FieldName = 'nomeParticipante'
-      Origin = 'nomeParticipante'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
-      Size = 200
-    end
-  end
   object FDQueryAUX: TFDQuery
     Connection = FDConnection
+    SQL.Strings = (
+      'select MAX(idProjeto) from projeto')
     Left = 32
     Top = 168
   end
-  object cdsAux: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    Left = 104
-    Top = 176
+  object FDqrProjetoParticipante: TFDQuery
+    CachedUpdates = True
+    Connection = FDConnection
+    UpdateOptions.UpdateTableName = 'dbsisproject.projetoparticipante'
+    SQL.Strings = (
+      
+        'select * from projetoparticipante where projeto_id  = :projeto_i' +
+        'd'
+      '')
+    Left = 160
+    Top = 168
+    ParamData = <
+      item
+        Name = 'PROJETO_ID'
+        DataType = ftString
+        ParamType = ptInput
+        Value = '0'
+      end>
+    object FDqrProjetoParticipanteprojeto_id: TIntegerField
+      FieldName = 'projeto_id'
+      Origin = 'projeto_id'
+      Required = True
+    end
+    object FDqrProjetoParticipantenomeParticipante: TStringField
+      FieldName = 'nomeParticipante'
+      Origin = 'nomeParticipante'
+      Required = True
+      Size = 200
+    end
   end
 end
