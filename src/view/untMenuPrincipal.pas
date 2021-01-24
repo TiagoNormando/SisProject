@@ -35,10 +35,7 @@ type
     actCadastro: TAction;
     actRelatorio: TAction;
     lblTitle: TLabel;
-    StatusBar1: TStatusBar;
     ColorDlgMenu: TColorDialog;
-    Image1: TImage;
-    actConfiguracao: TAction;
     catRelatorio: TCategoryButtons;
     catMenuItems: TCategoryButtons;
     catcadastro: TCategoryButtons;
@@ -47,6 +44,11 @@ type
     ActCProjeto: TAction;
     ActCClientes: TAction;
     PanelTexto: TPanel;
+    Panel1: TPanel;
+    Image1: TImage;
+    Image2: TImage;
+    Timer: TTimer;
+    PanelHora: TPanel;
     procedure SVClosed(Sender: TObject);
     procedure SVOpened(Sender: TObject);
     procedure SVOpening(Sender: TObject);
@@ -59,6 +61,8 @@ type
     procedure ChamaSubMenu(Menu,SubMenuBt: TCategoryButtons ; Rect: TRect ) ;
     procedure ActCProjetoExecute(Sender: TObject);
     procedure ActCClientesExecute(Sender: TObject);
+    procedure TimerTimer(Sender: TObject);
+    procedure Image1Click(Sender: TObject);
 
   private
      { Private declarations }
@@ -135,9 +139,14 @@ begin
 end;
 
 
-procedure TfrmMenuPrincipal.ActCClientesExecute(Sender: TObject);
+procedure TfrmMenuPrincipal.TimerTimer(Sender: TObject);
 begin
- //Self.LoadForm(TfCadCliente);
+      PanelHora.Caption := DateToStr(now)  + ' ' + TimeToStr(now);
+end;
+
+procedure TfrmMenuPrincipal.ActCClientesExecute(Sender: TObject);
+begin
+  MessageDlg('Opção em Desenvolvimento!', mtError, [mbOk], 0);
 end;
 
 procedure TfrmMenuPrincipal.actConfiguracaoExecute(Sender: TObject);
@@ -163,7 +172,8 @@ end;
 
 Procedure TfrmMenuPrincipal.actRelatorioExecute(Sender: TObject);
 begin
- ChamaSubMenu( catMenuItems,catRelatorio,rec ) ;
+
+  MessageDlg('Opção em Desenvolvimento!', mtError, [mbOk], 0);
 end;
 
 procedure TfrmMenuPrincipal.actCadastroExecute(Sender: TObject);
@@ -202,6 +212,11 @@ begin
 
   SubMenuBt.Show ;
 
+end;
+
+procedure TfrmMenuPrincipal.Image1Click(Sender: TObject);
+begin
+    close;
 end;
 
 procedure TfrmMenuPrincipal.SVMouseMove(Sender: TObject; Shift: TShiftState; X,

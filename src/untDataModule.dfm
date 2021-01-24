@@ -12,7 +12,6 @@ object frmDados: TfrmDados
       'Database=dbsisproject'
       'User_Name=root'
       'DriverID=MySQL')
-    Connected = True
     LoginPrompt = False
     Left = 48
     Top = 24

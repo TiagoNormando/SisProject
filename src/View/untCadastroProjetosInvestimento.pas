@@ -55,7 +55,7 @@ end;
 
 procedure TfrmCadastroProjetosInvestimento.Button1Click(Sender: TObject);
 begin
-  if StrToCurr(StringReplace(edtValorInvestido.Text,'.', '', [rfReplaceAll, rfIgnoreCase]))  < valorProjeto  then    MessageDlg('Não é possivel realizar a simulação, valor do Projeto mairo que o investido!' , mtError, [mbOk], 0)
+  if StrToCurr(StringReplace(edtValorInvestido.Text,'.', '', [rfReplaceAll, rfIgnoreCase]))  < valorProjeto  then    MessageDlg('Não é possivel realizar a simulação, valor do Projeto maior que o investido!' , mtError, [mbOk], 0)
   else begin
       retornarValor := True;
       //
@@ -83,17 +83,25 @@ end;
 procedure TfrmCadastroProjetosInvestimento.edtValorInvestidoKeyDown(
   Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
-  if key=vk_delete then
+  if (key=vk_delete) or (key=8) then
       Begin
          edtValorInvestido.clear;
          v1:='';
+                  v2:='';
+
       end;
 end;
 
 procedure TfrmCadastroProjetosInvestimento.edtValorInvestidoKeyPress(
   Sender: TObject; var Key: Char);
 begin
-v1:= v1 + key;
+if Key = #8 then
+begin
+    edtValorInvestido.clear;
+    v1:='';
+    v2:='';
+
+end else  v1:= v1 + key;
 end;
 
 
@@ -101,6 +109,7 @@ procedure TfrmCadastroProjetosInvestimento.FormShow(Sender: TObject);
 begin
     retornarValor := False;
     //
+    edtValorInvestido.SetFocus;
 end;
 
 end.

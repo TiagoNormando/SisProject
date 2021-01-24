@@ -87,7 +87,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
     BevelOuter = bvNone
     BorderWidth = 1
     TabOrder = 0
-    ExplicitWidth = 729
     object pnlLocalizar: TPanel
       Left = 1
       Top = 1
@@ -103,7 +102,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      ExplicitWidth = 727
       object lblLocalizar: TLabel
         Left = 184
         Top = 5
@@ -214,7 +212,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
       Color = 4276545
       ParentBackground = False
       TabOrder = 1
-      ExplicitWidth = 727
       object btnIncluir: TButton
         Left = 4
         Top = 2
@@ -399,7 +396,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      ExplicitWidth = 727
       object ctrRegistro: TPageControl
         Left = 4
         Top = 4
@@ -416,14 +412,12 @@ object frmCadastroProjetos: TfrmCadastroProjetos
         ParentFont = False
         TabOrder = 0
         TabStop = False
-        ExplicitWidth = 719
         object tshListagem: TTabSheet
           Cursor = crHandPoint
           Hint = 'Listagem dos Registros'
           Caption = 'Listagem dos Registros'
           ParentShowHint = False
           ShowHint = True
-          ExplicitWidth = 711
           object DBGridRegistro: TDBGrid
             Left = 0
             Top = 0
@@ -488,12 +482,9 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             Color = 4276545
             ParentBackground = False
             TabOrder = 1
-            ExplicitLeft = -1
-            ExplicitTop = 410
-            ExplicitWidth = 711
             object Label7: TLabel
-              Left = 165
-              Top = 6
+              Left = 161
+              Top = 5
               Width = 33
               Height = 14
               Caption = 'RISCO'
@@ -507,15 +498,15 @@ object frmCadastroProjetos: TfrmCadastroProjetos
               ParentFont = False
             end
             object lblDescricaoRisco: TLabel
-              Left = 166
-              Top = 26
-              Width = 52
-              Height = 19
+              Left = 154
+              Top = 22
+              Width = 65
+              Height = 24
               Caption = 'MEDIO'
               Color = clLime
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clLime
-              Font.Height = -16
+              Font.Height = -20
               Font.Name = 'Arial'
               Font.Style = [fsBold]
               ParentColor = False
@@ -540,7 +531,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             object lblvalorProjeto: TLabel
               Left = 6
               Top = 25
-              Width = 153
+              Width = 62
               Height = 19
               Caption = 'R$: 0.00'
               Color = clWhite
@@ -555,7 +546,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             object lblSimulado: TLabel
               Left = 423
               Top = 26
-              Width = 313
+              Width = 62
               Height = 19
               Caption = 'R$: 0.00'
               Color = clWhite
@@ -569,7 +560,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             end
             object Label15: TLabel
               Left = 423
-              Top = 6
+              Top = 5
               Width = 110
               Height = 14
               Caption = 'RETORNO SIMULADO'
@@ -584,7 +575,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             end
             object Label9: TLabel
               Left = 233
-              Top = 6
+              Top = 5
               Width = 119
               Height = 14
               Caption = 'VALOR INVESTIMENTO'
@@ -600,7 +591,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             object lblValorInvestido: TLabel
               Left = 233
               Top = 26
-              Width = 165
+              Width = 62
               Height = 19
               Caption = 'R$: 0.00'
               Color = clWhite
@@ -614,7 +605,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             end
             object Label16: TLabel
               Left = 569
-              Top = 6
+              Top = 5
               Width = 166
               Height = 14
               Caption = 'RETIRAR O VALOR DO PROJETO'
@@ -629,7 +620,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             end
             object ckValor: TCheckBox
               Left = 552
-              Top = 4
+              Top = 2
               Width = 17
               Height = 17
               Color = clWhite
@@ -652,7 +643,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
           ImageIndex = 1
           ParentShowHint = False
           ShowHint = True
-          ExplicitWidth = 711
           object lblCodigo: TLabel
             Left = 16
             Top = 16
@@ -759,7 +749,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             Font.Name = 'Arial'
             Font.Style = []
             ParentFont = False
-            TabOrder = 2
+            TabOrder = 4
           end
           object DBEdit1: TDBEdit
             Left = 100
@@ -775,7 +765,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             Font.Name = 'Arial'
             Font.Style = []
             ParentFont = False
-            TabOrder = 3
+            TabOrder = 2
           end
           object DBEdit3: TDBEdit
             Left = 240
@@ -791,7 +781,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             Font.Name = 'Arial'
             Font.Style = []
             ParentFont = False
-            TabOrder = 4
+            TabOrder = 3
           end
           object EdtNomeParticipantes: TEdit
             Left = 241
@@ -805,8 +795,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             Font.Name = 'Arial'
             Font.Style = []
             ParentFont = False
-            TabOrder = 5
-            Text = 'EDIT1'
+            TabOrder = 6
             OnKeyPress = EdtNomeParticipantesKeyPress
           end
           object Button2: TButton
@@ -815,7 +804,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             Width = 42
             Height = 25
             Caption = 'ADD'
-            TabOrder = 6
+            TabOrder = 7
             OnClick = Button2Click
           end
           object ComboBoxRisco: TComboBoxEx
@@ -833,7 +822,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
               item
                 Caption = 'ALTO'
               end>
-            TabOrder = 7
+            TabOrder = 5
           end
           object GroupBox1: TGroupBox
             Left = 100
