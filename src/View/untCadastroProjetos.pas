@@ -81,10 +81,18 @@ type
     srcProjetoParticipante: TDataSource;
     SpeedButton1: TSpeedButton;
     Panel1: TPanel;
-    Button1: TButton;
+    btnSimular: TButton;
     DBGrid1: TDBGrid;
     Label7: TLabel;
     lblDescricaoRisco: TLabel;
+    Label8: TLabel;
+    lblvalorProjeto: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    lblSimulado: TLabel;
+    Label15: TLabel;
     procedure Bloqueio(Tipo: Boolean);
     procedure FormResize(Sender: TObject);
     procedure srcRegistroDataChange(Sender: TObject; Field: TField);
@@ -108,7 +116,7 @@ type
     procedure Button3Click(Sender: TObject);
     procedure EdtNomeParticipantesKeyPress(Sender: TObject; var Key: Char);
     procedure SpeedButton1Click(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure btnSimularClick(Sender: TObject);
 
   private
 
@@ -235,7 +243,7 @@ begin
           TClientDataSet(srcRegistro.DataSet).FieldByName('nomeProjeto').Value := 'NOME DO PROJETO';
           TClientDataSet(srcRegistro.DataSet).FieldByName('dataInicio').Value := now;
           TClientDataSet(srcRegistro.DataSet).FieldByName('dataFim').Value := now + 360;
-          TClientDataSet(srcRegistro.DataSet).FieldByName('valorProjeto').Value := 10.000;
+          TClientDataSet(srcRegistro.DataSet).FieldByName('valorProjeto').Value := 100.000;
           TClientDataSet(srcRegistro.DataSet).FieldByName('risco').Value := 0;
           //
           ComboBoxRisco.ItemIndex :=    TClientDataSet(srcRegistro.DataSet).FieldByName('risco').Value;
@@ -399,14 +407,29 @@ begin
      end;
 end;
 
-procedure TfrmCadastroProjetos.Button1Click(Sender: TObject);
+procedure TfrmCadastroProjetos.btnSimularClick(Sender: TObject);
+var
+   valorRetornoInvestido : currency;
+   RetornoIn : IRetornoInvestimento ;
 begin
      try
           frmCadastroProjetosInvestimento := TfrmCadastroProjetosInvestimento.Create(Self);
           //
+          frmCadastroProjetosInvestimento.valorProjeto :=  TClientDataSet(srcRegistro.DataSet).FieldByName('valorProjeto').AsCurrency;
+          //
           frmCadastroProjetosInvestimento.showModal;
      finally
-          frmCadastroProjetosInvestimento.free;
+       if frmCadastroProjetosInvestimento.retornarValor then
+       begin
+            valorRetornoInvestido := StrToCurr(frmCadastroProjetosInvestimento.edtValorInvestido.Text);
+             //
+            RetornoIn := TRetornoInvestimento.CREATE;
+            //
+            lblDescricaoRisco.Caption :=  FormatCurr('R$ ###,###,##0.00', RetornoIn.retornarInvestimento(valorRetornoInvestido,TClientDataSet(srcRegistro.DataSet).FieldByName('risco').AsInteger));
+       end;
+       //
+       frmCadastroProjetosInvestimento.free;
+       //
      end;
 end;
 
@@ -626,18 +649,25 @@ begin
      btnCancelar.Visible := (srcRegistro.State = dsInsert) or (srcRegistro.State = dsEdit);
      btnExportar.Visible := (srcRegistro.State = dsBrowse) and (TClientDataSet(srcRegistro.DataSet).RecordCount > 0);
      //
+     lblDescricaoRisco.Visible :=      btnEditar.Visible;
+     //
      tshDados.TabVisible := (srcRegistro.State = dsInsert) or (srcRegistro.State = dsEdit);
      tshListagem.TabVisible := (not(tshDados.TabVisible));
+     btnSimular.Visible := btnEditar.Visible;
      //
      edtRegistro.Enabled := (not(tshDados.TabVisible));
      cbxOpcao.Enabled := (not(tshDados.TabVisible));
      btnLocalizar.Enabled := (not(tshDados.TabVisible));
+     //
+     lblSimulado.Caption := FormatCurr('R$ ###,###,##0.00',0);
      //
      if (srcRegistro.State = dsBrowse) and (TClientDataSet(srcRegistro.DataSet).RecordCount > 0) then
      begin
           RetornoIn := TRetornoInvestimento.CREATE;
           //
           lblDescricaoRisco.Caption := RetornoIn.retornarDescricaoRisco(TClientDataSet(srcRegistro.DataSet).FieldByName('risco').Value,lblDescricaoRisco);
+          //
+          lblvalorProjeto.Caption := FormatCurr('R$ ###,###,##0.00', TClientDataSet(srcRegistro.DataSet).FieldByName('valorProjeto').AsCurrency);
      end;
      //
      case srcRegistro.State of

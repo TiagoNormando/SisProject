@@ -13,6 +13,7 @@ object frmCadastroProjetosInvestimento: TfrmCadastroProjetosInvestimento
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
@@ -24,10 +25,6 @@ object frmCadastroProjetosInvestimento: TfrmCadastroProjetosInvestimento
     Color = 4276545
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = 296
-    ExplicitTop = 80
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object lblLocalizar: TLabel
       Left = 72
       Top = 17
@@ -52,8 +49,6 @@ object frmCadastroProjetosInvestimento: TfrmCadastroProjetosInvestimento
       Color = 4276545
       ParentBackground = False
       TabOrder = 0
-      ExplicitTop = 550
-      ExplicitWidth = 727
       object Button1: TButton
         Left = 116
         Top = 2
@@ -76,15 +71,16 @@ object frmCadastroProjetosInvestimento: TfrmCadastroProjetosInvestimento
         ParentShowHint = False
         ShowHint = False
         TabOrder = 0
+        OnClick = Button1Click
       end
     end
-    object Edit1: TEdit
+    object edtValorInvestido: TEdit
       Left = 96
       Top = 50
       Width = 121
       Height = 21
       TabOrder = 1
-      OnKeyPress = Edit1KeyPress
+      OnKeyPress = edtValorInvestidoKeyPress
     end
   end
 end

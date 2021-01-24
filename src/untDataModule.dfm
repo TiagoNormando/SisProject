@@ -66,6 +66,9 @@ object frmDados: TfrmDados
       Origin = 'valorProjeto'
       ProviderFlags = [pfInUpdate]
       Required = True
+      DisplayFormat = 'R$ ###,###,##0.00'
+      EditFormat = '###,###,##0.00'
+      currency = True
     end
     object FDTableProjetorisco: TIntegerField
       FieldName = 'risco'

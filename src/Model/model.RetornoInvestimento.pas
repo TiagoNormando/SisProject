@@ -9,7 +9,7 @@ type
   TRetornoInvestimento = Class(TInterfacedObject, IRetornoInvestimento)
   private
   public
-    function retornarInvestimento(const valorInvestido: double; const ricoProjeto: Integer): Currency;
+    function retornarInvestimento(const valorInvestido: Currency; const ricoProjeto: Integer): Currency;
     function retornarDescricaoRisco(const ricoProjeto: Integer; const lblLabel: TLabel): String;
     //
   end;
@@ -17,7 +17,7 @@ type
 implementation
 
 // faz o calculo do retorno se baseando no risco do projeto
-function TRetornoInvestimento.retornarInvestimento(const valorInvestido: double; const ricoProjeto: Integer): Currency;
+function TRetornoInvestimento.retornarInvestimento(const valorInvestido: Currency; const ricoProjeto: Integer): Currency;
 begin
   try
      case ricoProjeto of

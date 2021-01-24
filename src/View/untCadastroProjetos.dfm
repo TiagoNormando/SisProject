@@ -17,6 +17,66 @@ object frmCadastroProjetos: TfrmCadastroProjetos
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
+  object Label10: TLabel
+    Left = 375
+    Top = 25
+    Width = 40
+    Height = 14
+    Caption = 'R$: 0.00'
+    Color = clWhite
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label11: TLabel
+    Left = 259
+    Top = 25
+    Width = 110
+    Height = 14
+    Caption = 'VALOR DO PROJETO:'
+    Color = clWhite
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label12: TLabel
+    Left = 383
+    Top = 33
+    Width = 40
+    Height = 14
+    Caption = 'R$: 0.00'
+    Color = clWhite
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label13: TLabel
+    Left = 267
+    Top = 33
+    Width = 110
+    Height = 14
+    Caption = 'VALOR DO PROJETO:'
+    Color = clWhite
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
   object pnlForm: TPanel
     Left = 0
     Top = 0
@@ -398,10 +458,11 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             Color = 4276545
             ParentBackground = False
             TabOrder = 1
+            ExplicitLeft = -1
             ExplicitTop = 410
             object Label7: TLabel
-              Left = 549
-              Top = 17
+              Left = 10
+              Top = 6
               Width = 36
               Height = 14
               Caption = 'RISCO:'
@@ -415,11 +476,11 @@ object frmCadastroProjetos: TfrmCadastroProjetos
               ParentFont = False
             end
             object lblDescricaoRisco: TLabel
-              Left = 593
-              Top = 15
-              Width = 51
+              Left = 11
+              Top = 26
+              Width = 52
               Height = 19
-              Caption = 'RISCO'
+              Caption = 'MEDIO'
               Color = clLime
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clLime
@@ -428,9 +489,70 @@ object frmCadastroProjetos: TfrmCadastroProjetos
               Font.Style = [fsBold]
               ParentColor = False
               ParentFont = False
+              Visible = False
             end
-            object Button1: TButton
-              Left = 4
+            object Label8: TLabel
+              Left = 112
+              Top = 6
+              Width = 110
+              Height = 14
+              Caption = 'VALOR DO PROJETO:'
+              Color = clWhite
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -11
+              Font.Name = 'Arial'
+              Font.Style = [fsBold]
+              ParentColor = False
+              ParentFont = False
+            end
+            object lblvalorProjeto: TLabel
+              Left = 114
+              Top = 26
+              Width = 207
+              Height = 19
+              Caption = 'R$: 0.00'
+              Color = clWhite
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -16
+              Font.Name = 'Arial'
+              Font.Style = [fsBold]
+              ParentColor = False
+              ParentFont = False
+            end
+            object lblSimulado: TLabel
+              Left = 439
+              Top = 26
+              Width = 171
+              Height = 19
+              Caption = 'R$: 0.00'
+              Color = clWhite
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -16
+              Font.Name = 'Arial'
+              Font.Style = [fsBold]
+              ParentColor = False
+              ParentFont = False
+            end
+            object Label15: TLabel
+              Left = 442
+              Top = 6
+              Width = 171
+              Height = 14
+              Caption = 'VALOR SIMULADO DO RETORNO:'
+              Color = clWhite
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -11
+              Font.Name = 'Arial'
+              Font.Style = [fsBold]
+              ParentColor = False
+              ParentFont = False
+            end
+            object btnSimular: TButton
+              Left = 343
               Top = 2
               Width = 90
               Height = 45
@@ -451,7 +573,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
               ParentShowHint = False
               ShowHint = False
               TabOrder = 0
-              OnClick = Button1Click
+              OnClick = btnSimularClick
             end
           end
         end
