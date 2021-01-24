@@ -5,7 +5,8 @@ SisProject - Sistema de Controle de Projetos - Lorem Ipsum Inc. (Aplicação tes
 
 Saudações, 
 
-Olá, primeiramente gostaria de agradeçer a oportunidade da realização desse teste, foi uma tarefa muito boa. Obrigado!
+Primeiramente gostaria de agradecer a oportunidade da realização desse teste, foi uma tarefa muito boa. Obrigado!
+
 Escolhi desenvolver uma aplicação back end com delphi e o Banco de dados MySQL,
 apesar dessa escolha, todo os fundamentos que adotei nesse projeto, podem ser ultilizados em outras linguangues, pois são bem semelhantes.
 Para a validações das regras e calculos, foi utlizado MVC para demostrar seu uso com Delphi.
@@ -30,6 +31,9 @@ Depois do servidor local habilitado, digitar no navegador : http://localhost/php
 Precisa criar o banco dbsisproject de preferencia dom o collation utf8_general_ci.
 Disponibilizei uma pasta SQL contento dois aquivos com scripts das tabelas do banco(um scripts com dados e outros sem..basta esolher..),
 depois de criar o banco, basta apenas exportar, como mostra na imagem que está na pasta.
+
+Caso seja o projeto aberto no Delphi e de erro pedido o Drive do MySql na pasta de Documentos,
+basta vincular ao componente "Driver", no DataModule, como mostra na imagem que esta junto com a dll na pasta Lib.
 
 
 
