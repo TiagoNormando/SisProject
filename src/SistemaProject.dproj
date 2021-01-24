@@ -115,9 +115,11 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="View\untCadastroProjetosInvestimento.pas">
-            <Form>Form1</Form>
+            <Form>frmCadastroProjetosInvestimento</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Model\model.RetornoInvestimento.interfaces.pas"/>
+        <DCCReference Include="Model\model.RetornoInvestimento.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

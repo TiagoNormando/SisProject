@@ -152,8 +152,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
       Color = 4276545
       ParentBackground = False
       TabOrder = 1
-      ExplicitLeft = -4
-      ExplicitTop = 491
       object btnIncluir: TButton
         Left = 4
         Top = 2
@@ -251,7 +249,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
         OnClick = btnSalvarClick
       end
       object btnCancelar: TButton
-        Left = 196
+        Left = 197
         Top = 2
         Width = 90
         Height = 45
@@ -314,7 +312,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      ExplicitLeft = 0
       object ctrRegistro: TPageControl
         Left = 4
         Top = 4
@@ -331,18 +328,12 @@ object frmCadastroProjetos: TfrmCadastroProjetos
         ParentFont = False
         TabOrder = 0
         TabStop = False
-        ExplicitLeft = 7
-        ExplicitTop = 6
-        ExplicitHeight = 429
         object tshListagem: TTabSheet
           Cursor = crHandPoint
           Hint = 'Listagem dos Registros'
           Caption = 'Listagem dos Registros'
           ParentShowHint = False
           ShowHint = True
-          ExplicitLeft = 1
-          ExplicitTop = 65
-          ExplicitHeight = 400
           object DBGridRegistro: TDBGrid
             Left = 0
             Top = 0
@@ -407,9 +398,37 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             Color = 4276545
             ParentBackground = False
             TabOrder = 1
-            ExplicitLeft = 1
-            ExplicitTop = 550
-            ExplicitWidth = 727
+            ExplicitTop = 410
+            object Label7: TLabel
+              Left = 549
+              Top = 17
+              Width = 36
+              Height = 14
+              Caption = 'RISCO:'
+              Color = clWhite
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWhite
+              Font.Height = -11
+              Font.Name = 'Arial'
+              Font.Style = [fsBold]
+              ParentColor = False
+              ParentFont = False
+            end
+            object lblDescricaoRisco: TLabel
+              Left = 593
+              Top = 15
+              Width = 51
+              Height = 19
+              Caption = 'RISCO'
+              Color = clLime
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clLime
+              Font.Height = -16
+              Font.Name = 'Arial'
+              Font.Style = [fsBold]
+              ParentColor = False
+              ParentFont = False
+            end
             object Button1: TButton
               Left = 4
               Top = 2
@@ -432,6 +451,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
               ParentShowHint = False
               ShowHint = False
               TabOrder = 0
+              OnClick = Button1Click
             end
           end
         end

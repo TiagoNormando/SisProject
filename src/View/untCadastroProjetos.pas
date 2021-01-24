@@ -35,7 +35,9 @@ uses
   Xml.Win.msxmldom,
   Xml.xmldom, Xml.XMLIntf,
   IdSMTP, IdSSLOpenSSL, IdMessage, IdText, IdAttachmentFile,
-  IdExplicitTLSClientServerBase, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.Menus;
+  IdExplicitTLSClientServerBase, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.Menus,
+  model.RetornoInvestimento.interfaces,
+  model.RetornoInvestimento;
 
 type
   TfrmCadastroProjetos = class(TForm)
@@ -81,6 +83,8 @@ type
     Panel1: TPanel;
     Button1: TButton;
     DBGrid1: TDBGrid;
+    Label7: TLabel;
+    lblDescricaoRisco: TLabel;
     procedure Bloqueio(Tipo: Boolean);
     procedure FormResize(Sender: TObject);
     procedure srcRegistroDataChange(Sender: TObject; Field: TField);
@@ -104,6 +108,7 @@ type
     procedure Button3Click(Sender: TObject);
     procedure EdtNomeParticipantesKeyPress(Sender: TObject; var Key: Char);
     procedure SpeedButton1Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
 
   private
 
@@ -119,7 +124,7 @@ implementation
 
 {$R *.dfm}
 
-uses untMenuPrincipal, untDataModule;
+uses untMenuPrincipal, untDataModule, untCadastroProjetosInvestimento;
 
 
 procedure TfrmCadastroProjetos.Bloqueio(Tipo: Boolean);
@@ -394,6 +399,17 @@ begin
      end;
 end;
 
+procedure TfrmCadastroProjetos.Button1Click(Sender: TObject);
+begin
+     try
+          frmCadastroProjetosInvestimento := TfrmCadastroProjetosInvestimento.Create(Self);
+          //
+          frmCadastroProjetosInvestimento.showModal;
+     finally
+          frmCadastroProjetosInvestimento.free;
+     end;
+end;
+
 procedure TfrmCadastroProjetos.Button2Click(Sender: TObject);
 var contador : integer;
 begin
@@ -599,6 +615,8 @@ CLOSE;
 end;
 
 procedure TfrmCadastroProjetos.srcRegistroDataChange(Sender: TObject; Field: TField);
+var
+ RetornoIn : IRetornoInvestimento ;
 begin
   // Verificar Status
      btnIncluir.Visible := (srcRegistro.State = dsBrowse) and (TClientDataSet(srcRegistro.DataSet).Active);
@@ -614,6 +632,13 @@ begin
      edtRegistro.Enabled := (not(tshDados.TabVisible));
      cbxOpcao.Enabled := (not(tshDados.TabVisible));
      btnLocalizar.Enabled := (not(tshDados.TabVisible));
+     //
+     if (srcRegistro.State = dsBrowse) and (TClientDataSet(srcRegistro.DataSet).RecordCount > 0) then
+     begin
+          RetornoIn := TRetornoInvestimento.CREATE;
+          //
+          lblDescricaoRisco.Caption := RetornoIn.retornarDescricaoRisco(TClientDataSet(srcRegistro.DataSet).FieldByName('risco').Value,lblDescricaoRisco);
+     end;
      //
      case srcRegistro.State of
           dsBrowse:

@@ -7,12 +7,13 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask;
 
 type
-  TForm1 = class(TForm)
+  TfrmCadastroProjetosInvestimento = class(TForm)
     Panel1: TPanel;
     Panel2: TPanel;
     Button1: TButton;
     lblLocalizar: TLabel;
-    editvalorInvestimento: TMaskEdit;
+    Edit1: TEdit;
+    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -20,10 +21,16 @@ type
   end;
 
 var
-  Form1: TForm1;
+  frmCadastroProjetosInvestimento: TfrmCadastroProjetosInvestimento;
 
 implementation
 
 {$R *.dfm}
+
+procedure TfrmCadastroProjetosInvestimento.Edit1KeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if not (key in ['0'..'9',',',#8]) then key :=#0;
+end;
 
 end.

@@ -1,4 +1,4 @@
-object Form1: TForm1
+object frmCadastroProjetosInvestimento: TfrmCadastroProjetosInvestimento
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
@@ -78,16 +78,13 @@ object Form1: TForm1
         TabOrder = 0
       end
     end
-    object editvalorInvestimento: TMaskEdit
-      Left = 104
-      Top = 37
-      Width = 120
+    object Edit1: TEdit
+      Left = 96
+      Top = 50
+      Width = 121
       Height = 21
-      Alignment = taRightJustify
-      EditMask = '#,##0.00;1;_'
-      MaxLength = 8
       TabOrder = 1
-      Text = ' ,   .  '
+      OnKeyPress = Edit1KeyPress
     end
   end
 end
