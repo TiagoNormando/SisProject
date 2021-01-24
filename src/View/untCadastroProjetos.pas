@@ -64,13 +64,13 @@ type
     DBEditCodigo: TDBEdit;
     srcRegistro: TDataSource;
     Label2: TLabel;
-    DBEdit2: TDBEdit;
+    dbNomeProjeto: TDBEdit;
     Label3: TLabel;
     Label5: TLabel;
-    DBEdit5: TDBEdit;
+    dbValorprojeto: TDBEdit;
     Label6: TLabel;
-    DBEdit1: TDBEdit;
-    DBEdit3: TDBEdit;
+    dbInicio: TDBEdit;
+    dbFim: TDBEdit;
     Label1: TLabel;
     EdtNomeParticipantes: TEdit;
     Button2: TButton;
@@ -378,6 +378,42 @@ procedure TfrmCadastroProjetos.btnSalvarClick(Sender: TObject);
 var
      nomeParcitipante: String;
 begin
+    if dbNomeProjeto.Text = '' then
+    begin
+         MessageDlg('Informe o Nome do Projeto!', mtError, [mbOk], 0);
+         //
+         exit;
+    end;
+    //
+    if dbInicio.Text = '' then
+    begin
+         MessageDlg('Informe a Data de Início do Projeto!', mtError, [mbOk], 0);
+         //
+         exit;
+    end;
+    //
+    if dbFim.Text = '' then
+    begin
+         MessageDlg('Informe a Data de Fim do Projeto!', mtError, [mbOk], 0);
+         //
+         exit;
+    end;
+   //
+    if dbValorprojeto.Text = '' then
+    begin
+         MessageDlg('Informe o Valor do Projeto!', mtError, [mbOk], 0);
+         //
+         exit;
+    end;
+  //
+    if ComboBoxRisco.Text = '' then
+    begin
+         MessageDlg('Informe o Risco do Projeto!', mtError, [mbOk], 0);
+         //
+         exit;
+    end;
+
+
      try
           Bloqueio(False);
           // Gravar Registro

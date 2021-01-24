@@ -31,7 +31,7 @@ object frmDados: TfrmDados
     Connection = FDConnection
     UpdateOptions.UpdateTableName = 'projeto'
     TableName = 'projeto'
-    Left = 40
+    Left = 48
     Top = 104
     object FDTableProjetoidProjeto: TFDAutoIncField
       FieldName = 'idProjeto'
@@ -80,7 +80,7 @@ object frmDados: TfrmDados
     Connection = FDConnection
     SQL.Strings = (
       'select MAX(idProjeto) from projeto')
-    Left = 32
+    Left = 48
     Top = 168
   end
   object FDqrProjetoParticipante: TFDQuery
@@ -92,8 +92,8 @@ object frmDados: TfrmDados
         'select * from projetoparticipante where projeto_id  = :projeto_i' +
         'd'
       '')
-    Left = 160
-    Top = 168
+    Left = 48
+    Top = 224
     ParamData = <
       item
         Name = 'PROJETO_ID'

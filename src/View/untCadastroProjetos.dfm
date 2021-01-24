@@ -285,7 +285,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
         OnClick = btnEditarClick
       end
       object btnSalvar: TButton
-        Left = 102
+        Left = 101
         Top = 2
         Width = 90
         Height = 45
@@ -657,7 +657,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             Width = 92
             Height = 14
             Caption = 'Nome do Projeto'
-            FocusControl = DBEdit2
+            FocusControl = dbNomeProjeto
           end
           object Label3: TLabel
             Left = 100
@@ -669,10 +669,10 @@ object frmCadastroProjetos: TfrmCadastroProjetos
           object Label5: TLabel
             Left = 380
             Top = 60
-            Width = 28
+            Width = 88
             Height = 14
-            Caption = 'Valor'
-            FocusControl = DBEdit5
+            Caption = 'Valor do Projeto'
+            FocusControl = dbValorprojeto
           end
           object Label6: TLabel
             Left = 100
@@ -719,7 +719,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             TabOrder = 0
             StyleElements = []
           end
-          object DBEdit2: TDBEdit
+          object dbNomeProjeto: TDBEdit
             Left = 100
             Top = 32
             Width = 445
@@ -735,7 +735,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             ParentFont = False
             TabOrder = 1
           end
-          object DBEdit5: TDBEdit
+          object dbValorprojeto: TDBEdit
             Left = 380
             Top = 75
             Width = 165
@@ -751,7 +751,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             ParentFont = False
             TabOrder = 4
           end
-          object DBEdit1: TDBEdit
+          object dbInicio: TDBEdit
             Left = 100
             Top = 75
             Width = 134
@@ -767,7 +767,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             ParentFont = False
             TabOrder = 2
           end
-          object DBEdit3: TDBEdit
+          object dbFim: TDBEdit
             Left = 240
             Top = 75
             Width = 134
@@ -809,7 +809,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
           end
           object ComboBoxRisco: TComboBoxEx
             Left = 100
-            Top = 127
+            Top = 126
             Width = 134
             Height = 23
             ItemsEx = <
