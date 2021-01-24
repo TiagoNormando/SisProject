@@ -510,7 +510,7 @@ begin
         //
         EdtNomeParticipantes.Clear;
        EdtNomeParticipantes.SetFocus;
-    end;
+    end else   MessageDlg('Informe o nome do Participante!', mtError, [mbOk], 0);
 
 end;
 

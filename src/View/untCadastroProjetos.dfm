@@ -402,7 +402,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
         Width = 790
         Height = 486
         Cursor = crHandPoint
-        ActivePage = tshListagem
+        ActivePage = tshDados
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
