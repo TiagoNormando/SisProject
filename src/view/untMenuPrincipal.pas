@@ -66,6 +66,7 @@ type
      FFormActive: TForm;
     procedure LoadForm(AClass: TFormClass);
   public
+      var nomeMenu : string;
   end;
 
 var
@@ -151,8 +152,13 @@ end;
 
 procedure TfrmMenuPrincipal.ActCProjetoExecute(Sender: TObject);
 begin
-
+  //
+  nomeMenu := lblTitle.caption;
+  //
+   lblTitle.caption :=  lblTitle.caption + ' > ' + actCadastro.caption  + ' > ' + ActCProjeto.caption;
+  //
   Self.LoadForm(TfrmCadastroProjetos);
+  //
 end;
 
 Procedure TfrmMenuPrincipal.actRelatorioExecute(Sender: TObject);

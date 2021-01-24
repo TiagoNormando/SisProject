@@ -21,9 +21,15 @@ type
     FDConnection: TFDConnection;
     Driver: TFDPhysMySQLDriverLink;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
+    FDTableProjeto: TFDTable;
+    FDTableProjetoidProjeto: TFDAutoIncField;
+    FDTableProjetonomeProjeto: TStringField;
+    FDTableProjetodataInicio: TDateField;
+    FDTableProjetodataFim: TDateField;
+    FDTableProjetovalorProjeto: TFloatField;
+    FDTableProjetorisco: TIntegerField;
           procedure SplashAviso(Ativo: Boolean);
           procedure ExportCSV(hWnd: hWnd; InfoLocal: TDataSet; Arquivo: String; Separador: String);
-          procedure ClientRefresh(DataSet: TDataSet; ativoSplash: boolean = True);
     procedure DataModuleCreate(Sender: TObject);
      private
      public
@@ -85,41 +91,6 @@ begin
                     Application.ProcessMessages;
                end;
           end;
-     end;
-end;
-
-procedure TfrmDados.ClientRefresh(DataSet: TDataSet; ativoSplash: boolean = True);
-begin
-     try
-          if ativoSplash then
-               SplashAviso(True);
-          //
-          TClientDataSet(DataSet).DisableControls;
-          // Atualiza registro
-          try
-               if (TClientDataSet(DataSet).ChangeCount > 0) then
-                    TClientDataSet(DataSet).ApplyUpdates(-1);
-               //
-               if (TClientDataSet(DataSet).ChangeCount > 0) then
-                    TClientDataSet(DataSet).UndoLastChange(True);
-               //
-               if (TClientDataSet(DataSet).ChangeCount = 0) then
-                    TClientDataSet(DataSet).Refresh;
-          except
-               on E: Exception do
-               begin
-                    raise Exception.Create(Name + ' => ' + E.Message);
-                    //
-                    if (TClientDataSet(DataSet).ChangeCount > 0) then
-                         TClientDataSet(DataSet).UndoLastChange(True);
-               end
-          end;
-     finally
-          //
-          TClientDataSet(DataSet).EnableControls;
-          //
-          if ativoSplash then
-               SplashAviso(False);
      end;
 end;
 

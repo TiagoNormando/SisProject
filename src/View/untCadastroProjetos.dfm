@@ -11,8 +11,10 @@ object frmCadastroProjetos: TfrmCadastroProjetos
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnClose = FormClose
   OnCreate = FormCreate
   OnResize = FormResize
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pnlForm: TPanel
@@ -285,6 +287,30 @@ object frmCadastroProjetos: TfrmCadastroProjetos
         TabOrder = 5
         OnClick = btnExportarClick
       end
+      object Button1: TButton
+        Left = 483
+        Top = 2
+        Width = 110
+        Height = 45
+        Cursor = crHandPoint
+        ParentCustomHint = False
+        BiDiMode = bdLeftToRight
+        Caption = 'Voltar'
+        DoubleBuffered = False
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ImageIndex = 7
+        ParentBiDiMode = False
+        ParentDoubleBuffered = False
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = False
+        TabOrder = 6
+        OnClick = Button1Click
+      end
     end
     object pnlDados: TPanel
       Left = 1
@@ -307,7 +333,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
         Width = 625
         Height = 423
         Cursor = crHandPoint
-        ActivePage = tshDados
+        ActivePage = tshListagem
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -323,10 +349,6 @@ object frmCadastroProjetos: TfrmCadastroProjetos
           Caption = 'Listagem dos Registros'
           ParentShowHint = False
           ShowHint = True
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 576
-          ExplicitHeight = 431
           object DBGridRegistro: TDBGrid
             Left = 0
             Top = 0
@@ -364,6 +386,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             Columns = <
               item
                 Expanded = False
+                FieldName = 'idProjeto'
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clBlack
                 Font.Height = -11
@@ -375,10 +398,9 @@ object frmCadastroProjetos: TfrmCadastroProjetos
               end
               item
                 Expanded = False
-                Visible = True
-              end
-              item
-                Expanded = False
+                FieldName = 'nomeProjeto'
+                Title.Caption = 'Nome do Projeto'
+                Width = 510
                 Visible = True
               end>
           end
@@ -398,6 +420,44 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             Caption = 'C'#243'digo'
             FocusControl = DBEditCodigo
           end
+          object Label2: TLabel
+            Left = 92
+            Top = 16
+            Width = 72
+            Height = 14
+            Caption = 'nomeProjeto'
+            FocusControl = DBEdit2
+          end
+          object Label3: TLabel
+            Left = 92
+            Top = 60
+            Width = 29
+            Height = 14
+            Caption = 'In'#237'cio'
+          end
+          object Label5: TLabel
+            Left = 372
+            Top = 60
+            Width = 28
+            Height = 14
+            Caption = 'Valor'
+            FocusControl = DBEdit5
+          end
+          object Label6: TLabel
+            Left = 92
+            Top = 112
+            Width = 28
+            Height = 14
+            Caption = 'risco'
+            FocusControl = DBEdit6
+          end
+          object Label1: TLabel
+            Left = 232
+            Top = 60
+            Width = 20
+            Height = 14
+            Caption = 'Fim'
+          end
           object DBEditCodigo: TDBEdit
             Left = 8
             Top = 32
@@ -407,13 +467,15 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             Hint = 'c'#243'digo'
             TabStop = False
             CharCase = ecUpperCase
-            Color = clBtnFace
+            Color = clSilver
             Ctl3D = True
+            DataField = 'idProjeto'
+            DataSource = srcRegistro
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11
             Font.Name = 'Arial'
-            Font.Style = []
+            Font.Style = [fsBold]
             ParentCtl3D = False
             ParentFont = False
             ReadOnly = True
@@ -421,14 +483,95 @@ object frmCadastroProjetos: TfrmCadastroProjetos
             StyleElements = []
             OnKeyPress = DBEditCodigoKeyPress
           end
+          object DBEdit2: TDBEdit
+            Left = 92
+            Top = 32
+            Width = 445
+            Height = 22
+            CharCase = ecUpperCase
+            DataField = 'nomeProjeto'
+            DataSource = srcRegistro
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 1
+          end
+          object DBEdit5: TDBEdit
+            Left = 372
+            Top = 75
+            Width = 134
+            Height = 22
+            CharCase = ecUpperCase
+            DataField = 'valorProjeto'
+            DataSource = srcRegistro
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 2
+          end
+          object DBEdit6: TDBEdit
+            Left = 92
+            Top = 128
+            Width = 134
+            Height = 22
+            CharCase = ecUpperCase
+            DataField = 'risco'
+            DataSource = srcRegistro
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 3
+          end
+          object DBEdit1: TDBEdit
+            Left = 92
+            Top = 75
+            Width = 134
+            Height = 22
+            CharCase = ecUpperCase
+            DataField = 'dataInicio'
+            DataSource = srcRegistro
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 4
+          end
+          object DBEdit3: TDBEdit
+            Left = 232
+            Top = 75
+            Width = 134
+            Height = 22
+            CharCase = ecUpperCase
+            DataField = 'dataFim'
+            DataSource = srcRegistro
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 5
+          end
         end
       end
     end
   end
   object srcRegistro: TDataSource
     AutoEdit = False
+    DataSet = frmDados.FDTableProjeto
     OnDataChange = srcRegistroDataChange
-    Left = 240
-    Top = 200
+    Left = 192
+    Top = 320
   end
 end

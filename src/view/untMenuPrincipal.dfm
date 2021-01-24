@@ -1,8 +1,9 @@
 object frmMenuPrincipal: TfrmMenuPrincipal
   Left = 0
   Top = 0
-  ClientHeight = 478
-  ClientWidth = 1091
+  BorderIcons = [biSystemMenu]
+  ClientHeight = 600
+  ClientWidth = 800
   Color = clBtnFace
   DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
@@ -11,19 +12,20 @@ object frmMenuPrincipal: TfrmMenuPrincipal
   Font.Name = 'Segoe UI'
   Font.Style = []
   OldCreateOrder = False
-  WindowState = wsMaximized
+  Position = poDesktopCenter
   PixelsPerInch = 96
   TextHeight = 15
   object pnlToolbar: TPanel
     Left = 0
     Top = 0
-    Width = 1091
+    Width = 800
     Height = 50
     Align = alTop
     BevelOuter = bvNone
     Color = 4276545
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 1091
     object imgMenu: TImage
       Left = 10
       Top = 10
@@ -55,7 +57,7 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       ParentFont = False
     end
     object Image1: TImage
-      Left = 1040
+      Left = 749
       Top = 0
       Width = 51
       Height = 50
@@ -63,18 +65,21 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       Align = alRight
       Center = True
       OnClick = imgMenuClick
+      ExplicitLeft = 1040
     end
   end
   object pnlShowFrame: TPanel
     Left = 194
     Top = 50
-    Width = 897
-    Height = 409
+    Width = 606
+    Height = 531
     Align = alClient
     BevelOuter = bvNone
     Color = 15132390
     ParentBackground = False
     TabOrder = 1
+    ExplicitWidth = 897
+    ExplicitHeight = 409
     object catRelatorio: TCategoryButtons
       Tag = 1
       Left = 40
@@ -148,8 +153,8 @@ object frmMenuPrincipal: TfrmMenuPrincipal
     end
     object PanelTexto: TPanel
       Left = 0
-      Top = 384
-      Width = 897
+      Top = 506
+      Width = 606
       Height = 25
       Align = alBottom
       BevelInner = bvLowered
@@ -161,13 +166,15 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      ExplicitTop = 384
+      ExplicitWidth = 897
     end
   end
   object SV: TSplitView
     Left = 0
     Top = 50
     Width = 194
-    Height = 409
+    Height = 531
     CloseStyle = svcCompact
     Color = 4276545
     CompactWidth = 70
@@ -178,6 +185,7 @@ object frmMenuPrincipal: TfrmMenuPrincipal
     OnMouseMove = SVMouseMove
     OnOpened = SVOpened
     OnOpening = SVOpening
+    ExplicitHeight = 409
     object catMenuItems: TCategoryButtons
       Left = 0
       Top = -19
@@ -220,11 +228,13 @@ object frmMenuPrincipal: TfrmMenuPrincipal
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 459
-    Width = 1091
+    Top = 581
+    Width = 800
     Height = 19
     Color = 33023
     Panels = <>
+    ExplicitTop = 459
+    ExplicitWidth = 1091
   end
   object imlIcons: TImageList
     ColorDepth = cd32Bit

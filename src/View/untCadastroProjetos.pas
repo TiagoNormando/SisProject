@@ -61,6 +61,17 @@ type
     lblCodigo: TLabel;
     DBEditCodigo: TDBEdit;
     srcRegistro: TDataSource;
+    Label2: TLabel;
+    DBEdit2: TDBEdit;
+    Label3: TLabel;
+    Label5: TLabel;
+    DBEdit5: TDBEdit;
+    Label6: TLabel;
+    DBEdit6: TDBEdit;
+    DBEdit1: TDBEdit;
+    DBEdit3: TDBEdit;
+    Label1: TLabel;
+    Button1: TButton;
     procedure Bloqueio(Tipo: Boolean);
     procedure FormResize(Sender: TObject);
     procedure srcRegistroDataChange(Sender: TObject; Field: TField);
@@ -78,6 +89,9 @@ type
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure DBGridRegistroDblClick(Sender: TObject);
     procedure DBEditCodigoKeyPress(Sender: TObject; var Key: Char);
+    procedure FormShow(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
 
   private
 
@@ -112,7 +126,6 @@ begin
           try
                TClientDataSet(srcRegistro.DataSet).Cancel;
                //
-               frmDados.ClientRefresh(srcRegistro.DataSet);
           except
                on E: Exception do
                     raise Exception.Create(Name + ' => ' + E.Message);
@@ -150,7 +163,6 @@ begin
                try
                     TClientDataSet(srcRegistro.DataSet).Delete;
                     //
-                    frmDados.ClientRefresh(srcRegistro.DataSet);
                except
                     on E: Exception do
                          raise Exception.Create(Name + ' => ' + E.Message);
@@ -184,7 +196,16 @@ begin
      try
           Bloqueio(False);
           //
+          TClientDataSet(srcRegistro.DataSet).close;
+          TClientDataSet(srcRegistro.DataSet).Open;
+          //
           TClientDataSet(srcRegistro.DataSet).Insert;
+          //
+          TClientDataSet(srcRegistro.DataSet).FieldByName('nomeProjeto').Value := 'teste';
+          TClientDataSet(srcRegistro.DataSet).FieldByName('dataInicio').Value := now;
+          TClientDataSet(srcRegistro.DataSet).FieldByName('dataFim').Value := now;
+          TClientDataSet(srcRegistro.DataSet).FieldByName('valorProjeto').Value := 10;
+          TClientDataSet(srcRegistro.DataSet).FieldByName('risco').Value := 0;
      finally
           //
           Bloqueio(True);
@@ -203,6 +224,9 @@ begin
                //
                frmDados.SplashAviso(True);
                //
+               TClientDataSet(srcRegistro.DataSet).Close;
+               TClientDataSet(srcRegistro.DataSet).Open;
+               //
                Application.ProcessMessages;
                //
                edtRegistro.Text := TrimLeft(TrimRight(edtRegistro.Text));
@@ -211,12 +235,8 @@ begin
                begin
                     TClientDataSet(srcRegistro.DataSet).DisableControls;
                     //
-                    TClientDataSet(srcRegistro.DataSet).Close;
-                    //
-                    for Contador := 0 to TClientDataSet(srcRegistro.DataSet).Params.Count - 1 do
-                         TClientDataSet(srcRegistro.DataSet).Params[Contador].Clear;
-                    //
-                    TClientDataSet(srcRegistro.DataSet).Open;
+                    TClientDataSet(srcRegistro.DataSet).Filtered := False;
+                        TClientDataSet(srcRegistro.DataSet).Filter := '';
                     //
                     TClientDataSet(srcRegistro.DataSet).EnableControls;
                     //
@@ -227,17 +247,17 @@ begin
                else // Pesquisar Registro (Filtrar)
                     if (edtRegistro.Text <> '') then
                     begin
+
                          TClientDataSet(srcRegistro.DataSet).DisableControls;
                          //
-                         TClientDataSet(srcRegistro.DataSet).Close;
+                         TClientDataSet(srcRegistro.DataSet).Filtered := False;
                          //
-                         for Contador := 0 to TClientDataSet(srcRegistro.DataSet).Params.Count - 1 do
-                              TClientDataSet(srcRegistro.DataSet).Params[Contador].Clear;
+                         if DBGridRegistro.Columns[cbxOpcao.ItemIndex].FieldName = 'idProjeto' then
+                              TClientDataSet(srcRegistro.DataSet).Filter := 'idProjeto =' + edtRegistro.Text
+                         else
+                              TClientDataSet(srcRegistro.DataSet).Filter := 'nomeProjeto LIKE ' + QuotedStr('%' + edtRegistro.Text + '%');
                          //
-
-                              TClientDataSet(srcRegistro.DataSet).Params.ParamByName('@' + DBGridRegistro.Columns[cbxOpcao.ItemIndex].FieldName).Value := '%' + edtRegistro.Text + '%';
-                         //
-                         TClientDataSet(srcRegistro.DataSet).Open;
+                         TClientDataSet(srcRegistro.DataSet).Filtered := True;
                          //
                          TClientDataSet(srcRegistro.DataSet).EnableControls;
                          //
@@ -245,7 +265,7 @@ begin
                          //
                          TClientDataSet(srcRegistro.DataSet).First;
                     end;
-               //
+                    //
                if (edtRegistro.Text = '%%') then
                     edtRegistro.Text := '';
                //
@@ -274,7 +294,6 @@ begin
           try
                TClientDataSet(srcRegistro.DataSet).Post;
                //
-               frmDados.ClientRefresh(srcRegistro.DataSet);
           except
                on E: Exception do
                     raise Exception.Create(Name + ' => ' + E.Message);
@@ -288,6 +307,11 @@ begin
      end;
 end;
 
+procedure TfrmCadastroProjetos.Button1Click(Sender: TObject);
+begin
+   close;
+end;
+
 procedure TfrmCadastroProjetos.cbxOpcaoChange(Sender: TObject);
 var
      Contador: Integer;
@@ -295,7 +319,6 @@ begin
      // Modificar Campo de Pesquisa
      for Contador := 0 to DBGridRegistro.Columns.Count - 1 do
           DBGridRegistro.Columns[Contador].Title.Font.Style := [];
-     TClientDataSet(srcRegistro.DataSet).IndexFieldNames := DBGridRegistro.Columns[cbxOpcao.ItemIndex].FieldName;
      DBGridRegistro.Columns[cbxOpcao.ItemIndex].Title.Font.Style := [fsBold, fsUnderline];
 end;
 
@@ -334,34 +357,34 @@ var
      Contador: Integer;
      Agregado: Boolean;
 begin
-     Agregado := TClientDataSet(srcRegistro.DataSet).AggregatesActive;
      //
-     TClientDataSet(srcRegistro.DataSet).AggregatesActive := False;
-     //
-     TClientDataSet(srcRegistro.DataSet).IndexFieldNames := '';
      // Modificar Campo da Pesquisa
      if (TClientDataSet(srcRegistro.DataSet).FieldByName(Column.FieldName).FieldKind = fkData) then
      begin
           for Contador := 0 to DBGridRegistro.Columns.Count - 1 do
                DBGridRegistro.Columns[Contador].Title.Font.Style := [];
-          TClientDataSet(srcRegistro.DataSet).IndexFieldNames := Column.FieldName;
           Column.Title.Font.Style := [fsBold, fsUnderline];
           cbxOpcao.ItemIndex := Column.Index;
      end;
      //
-     TClientDataSet(srcRegistro.DataSet).AggregatesActive := Agregado;
 
+end;
+
+procedure TfrmCadastroProjetos.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+    TClientDataSet(srcRegistro.DataSet).Close;
+    //
+    frmMenuPrincipal.lblTitle.caption := frmMenuPrincipal.nomeMenu;
+    frmMenuPrincipal.PanelTexto.Caption :=        frmMenuPrincipal.lblTitle.caption;
 end;
 
 procedure TfrmCadastroProjetos.FormCreate(Sender: TObject);
 var
      Contador: Integer;
 begin
- {   try
+   try
           inherited;
-          //
-          if TClientDataSet(srcRegistro.DataSet).Active then
-               TClientDataSet(srcRegistro.DataSet).Close;
           //
           btnIncluir.Visible := False;
           btnExcluir.Visible := False;
@@ -381,12 +404,10 @@ begin
           //
           cbxOpcao.ItemIndex := 1;
           //
-          TClientDataSet(srcRegistro.DataSet).IndexFieldNames := DBGridRegistro.Columns[cbxOpcao.ItemIndex].FieldName;
-          //
           DBGridRegistro.Columns[cbxOpcao.ItemIndex].Title.Font.Style := [fsBold, fsUnderline];
           //
           edtRegistro.Text := '';
-     end;    }
+     end;
 end;
 
 procedure TfrmCadastroProjetos.FormResize(Sender: TObject);
@@ -406,6 +427,12 @@ begin
      edtRegistro.Width := (btnLocalizar.Left - edtRegistro.Left - 10)
 end;
 
+procedure TfrmCadastroProjetos.FormShow(Sender: TObject);
+begin
+             TClientDataSet(srcRegistro.DataSet).Close;
+               TClientDataSet(srcRegistro.DataSet).Open;
+end;
+
 procedure TfrmCadastroProjetos.srcRegistroDataChange(Sender: TObject; Field: TField);
 begin
   // Verificar Status
@@ -423,7 +450,6 @@ begin
      cbxOpcao.Enabled := (not(tshDados.TabVisible));
      btnLocalizar.Enabled := (not(tshDados.TabVisible));
      //
-
      //
      case srcRegistro.State of
           dsBrowse:
