@@ -105,11 +105,13 @@ object frmDados: TfrmDados
     object FDqrProjetoParticipanteprojeto_id: TIntegerField
       FieldName = 'projeto_id'
       Origin = 'projeto_id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object FDqrProjetoParticipantenomeParticipante: TStringField
       FieldName = 'nomeParticipante'
       Origin = 'nomeParticipante'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
       Size = 200
     end

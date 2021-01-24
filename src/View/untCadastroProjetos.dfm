@@ -285,7 +285,7 @@ object frmCadastroProjetos: TfrmCadastroProjetos
         OnClick = btnEditarClick
       end
       object btnSalvar: TButton
-        Left = 100
+        Left = 108
         Top = 2
         Width = 90
         Height = 45

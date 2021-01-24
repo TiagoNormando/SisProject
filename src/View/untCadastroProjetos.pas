@@ -203,6 +203,39 @@ begin
           try
                Bloqueio(False);
                try
+                   //
+                    frmDados.FDqrProjetoParticipante.Close;
+                    frmDados.FDqrProjetoParticipante.ParamByName('PROJETO_ID').Value  := TClientDataSet(srcRegistro.DataSet).FieldByName('idProjeto').value;
+                    frmDados.FDqrProjetoParticipante.Open;
+                    //
+                    if (frmDados.FDqrProjetoParticipante.RecordCount > 0) then
+                    begin
+                        ///
+                        frmDados.FDqrProjetoParticipante.First;
+                        //
+                        while (not frmDados.FDqrProjetoParticipante.eof) do
+                        begin
+                             try
+                                 frmDados.FDqrProjetoParticipante.Delete;
+                                //
+                            except
+                                 on E: Exception do
+                                 begin
+                                      raise Exception.Create(Name + ' => ' + E.Message);
+                                      //
+                                      if (TClientDataSet(srcProjetoParticipante.DataSet).ChangeCount > 0) then
+                                           TClientDataSet(srcProjetoParticipante.DataSet).UndoLastChange(True);
+                                 end
+                            end;
+                            //
+                            continue
+                        end;
+                       //
+                      frmDados.FDqrProjetoParticipante.Append;
+                      frmDados.FDqrProjetoParticipante.ApplyUpdates(-1);
+                      frmDados.FDqrProjetoParticipante.UndoLastChange(True);
+                    end;
+
                     TClientDataSet(srcRegistro.DataSet).Delete;
                     //
                except
