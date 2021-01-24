@@ -3,7 +3,7 @@ object frmMenuPrincipal: TfrmMenuPrincipal
   Top = 0
   BorderIcons = [biSystemMenu]
   ClientHeight = 700
-  ClientWidth = 900
+  ClientWidth = 1000
   Color = clBtnFace
   DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
@@ -18,13 +18,14 @@ object frmMenuPrincipal: TfrmMenuPrincipal
   object pnlToolbar: TPanel
     Left = 0
     Top = 0
-    Width = 900
+    Width = 1000
     Height = 50
     Align = alTop
     BevelOuter = bvNone
     Color = 4276545
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 900
     object imgMenu: TImage
       Left = 10
       Top = 10
@@ -56,7 +57,7 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       ParentFont = False
     end
     object Image1: TImage
-      Left = 849
+      Left = 949
       Top = 0
       Width = 51
       Height = 50
@@ -70,13 +71,14 @@ object frmMenuPrincipal: TfrmMenuPrincipal
   object pnlShowFrame: TPanel
     Left = 194
     Top = 50
-    Width = 706
+    Width = 806
     Height = 631
     Align = alClient
     BevelOuter = bvNone
     Color = 15132390
     ParentBackground = False
     TabOrder = 1
+    ExplicitWidth = 706
     object catRelatorio: TCategoryButtons
       Tag = 1
       Left = 40
@@ -151,7 +153,7 @@ object frmMenuPrincipal: TfrmMenuPrincipal
     object PanelTexto: TPanel
       Left = 0
       Top = 606
-      Width = 706
+      Width = 806
       Height = 25
       Align = alBottom
       BevelInner = bvLowered
@@ -163,6 +165,7 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      ExplicitWidth = 706
     end
   end
   object SV: TSplitView
@@ -223,10 +226,11 @@ object frmMenuPrincipal: TfrmMenuPrincipal
   object StatusBar1: TStatusBar
     Left = 0
     Top = 681
-    Width = 900
+    Width = 1000
     Height = 19
     Color = 33023
     Panels = <>
+    ExplicitWidth = 900
   end
   object imlIcons: TImageList
     ColorDepth = cd32Bit

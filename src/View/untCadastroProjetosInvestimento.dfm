@@ -76,10 +76,14 @@ object frmCadastroProjetosInvestimento: TfrmCadastroProjetosInvestimento
     end
     object edtValorInvestido: TEdit
       Left = 96
-      Top = 50
+      Top = 37
       Width = 121
       Height = 21
+      Alignment = taRightJustify
       TabOrder = 1
+      OnChange = edtValorInvestidoChange
+      OnClick = edtValorInvestidoClick
+      OnKeyDown = edtValorInvestidoKeyDown
       OnKeyPress = edtValorInvestidoKeyPress
     end
   end

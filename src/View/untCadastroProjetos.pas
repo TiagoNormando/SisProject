@@ -81,7 +81,6 @@ type
     srcProjetoParticipante: TDataSource;
     SpeedButton1: TSpeedButton;
     Panel1: TPanel;
-    btnSimular: TButton;
     DBGrid1: TDBGrid;
     Label7: TLabel;
     lblDescricaoRisco: TLabel;
@@ -93,6 +92,11 @@ type
     Label13: TLabel;
     lblSimulado: TLabel;
     Label15: TLabel;
+    Label9: TLabel;
+    lblValorInvestido: TLabel;
+    ckValor: TCheckBox;
+    btnSimular: TButton;
+    Label16: TLabel;
     procedure Bloqueio(Tipo: Boolean);
     procedure FormResize(Sender: TObject);
     procedure srcRegistroDataChange(Sender: TObject; Field: TField);
@@ -117,12 +121,14 @@ type
     procedure EdtNomeParticipantesKeyPress(Sender: TObject; var Key: Char);
     procedure SpeedButton1Click(Sender: TObject);
     procedure btnSimularClick(Sender: TObject);
+    procedure ckValorClick(Sender: TObject);
 
   private
 
   public
    codigoProjeto : Integer;
    novoRegistro : boolean;
+   valorRetornoInvestido, valorInvestimento, valorProjeto : currency;
   end;
 
 var
@@ -442,7 +448,7 @@ end;
 
 procedure TfrmCadastroProjetos.btnSimularClick(Sender: TObject);
 var
-   valorRetornoInvestido : currency;
+   riscoProjeto : Integer;
    RetornoIn : IRetornoInvestimento ;
 begin
      try
@@ -454,11 +460,15 @@ begin
      finally
        if frmCadastroProjetosInvestimento.retornarValor then
        begin
-            valorRetornoInvestido := StrToCurr(frmCadastroProjetosInvestimento.edtValorInvestido.Text);
+            valorInvestimento := StrToCurr( StringReplace(frmCadastroProjetosInvestimento.edtValorInvestido.Text,'.', '', [rfReplaceAll, rfIgnoreCase]));
+            riscoProjeto := TClientDataSet(srcRegistro.DataSet).FieldByName('risco').AsInteger;
+            valorProjeto := TClientDataSet(srcRegistro.DataSet).FieldByName('valorProjeto').AsCurrency;
              //
             RetornoIn := TRetornoInvestimento.CREATE;
+            valorRetornoInvestido  :=  RetornoIn.retornarInvestimento(valorProjeto, valorInvestimento, riscoProjeto);
             //
-            lblDescricaoRisco.Caption :=  FormatCurr('R$ ###,###,##0.00', RetornoIn.retornarInvestimento(valorRetornoInvestido,TClientDataSet(srcRegistro.DataSet).FieldByName('risco').AsInteger));
+            lblSimulado.Caption :=  FormatCurr('R$ ###,###,##0.00', valorRetornoInvestido);
+            lblValorInvestido.Caption :=  FormatCurr('R$ ###,###,##0.00', valorInvestimento);
        end;
        //
        frmCadastroProjetosInvestimento.free;
@@ -532,6 +542,17 @@ begin
      for Contador := 0 to DBGridRegistro.Columns.Count - 1 do
           DBGridRegistro.Columns[Contador].Title.Font.Style := [];
      DBGridRegistro.Columns[cbxOpcao.ItemIndex].Title.Font.Style := [fsBold, fsUnderline];
+end;
+
+procedure TfrmCadastroProjetos.ckValorClick(Sender: TObject);
+begin
+if valorRetornoInvestido > 0 then
+begin
+    if ckValor.Checked then
+    lblSimulado.Caption :=  FormatCurr('R$ ###,###,##0.00', valorRetornoInvestido - valorProjeto) else
+    lblSimulado.Caption :=  FormatCurr('R$ ###,###,##0.00', valorRetornoInvestido);
+end;
+
 end;
 
 procedure TfrmCadastroProjetos.DBGridRegistroDblClick(Sender: TObject);
@@ -683,6 +704,10 @@ begin
      btnExportar.Visible := (srcRegistro.State = dsBrowse) and (TClientDataSet(srcRegistro.DataSet).RecordCount > 0);
      //
      lblDescricaoRisco.Visible :=      btnEditar.Visible;
+     //
+      valorRetornoInvestido := 0;
+      valorProjeto := 0;
+      valorInvestimento := 0;
      //
      tshDados.TabVisible := (srcRegistro.State = dsInsert) or (srcRegistro.State = dsEdit);
      tshListagem.TabVisible := (not(tshDados.TabVisible));
