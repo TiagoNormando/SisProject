@@ -4,11 +4,8 @@ SisProject - Sistema de Controle de Projetos - Lorem Ipsum Inc. (Aplicação tes
 
 
 Saudações, 
-
-Primeiramente gostaria de agradecer a oportunidade da realização desse teste, foi uma tarefa muito boa. Obrigado!
-
 Escolhi desenvolver uma aplicação back end com delphi e o Banco de dados MySQL,
-apesar dessa escolha, todo os fundamentos que adotei nesse projeto, podem ser ultilizados em outras linguangues, pois são bem semelhantes.
+apesar dessa escolha, todo os fundamentos que adotei nesse projeto, podem ser ultilizados em outras linguanges, pois são bem semelhantes.
 Para a validações das regras e calculos, foi utlizado MVC para demostrar seu uso com Delphi.
 Foi criando outras opções no menu, apenas para demostrar como ficaria, evento não está implementado.
 
